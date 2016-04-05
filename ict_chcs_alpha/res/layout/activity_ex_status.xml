@@ -1,0 +1,358 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <!-- TITLE -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="30dp"
+            android:paddingTop="20dp" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="EXERCISE INFORMATION"
+                android:textColor="#ff8c00"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- INCLINE -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="20dp"
+                android:text="INCLINE"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_es_incline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- HEARTBEAT -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="GOAL HEARTBEAT"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_es_golheartbeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="golheartbeat"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="HEARTBEAT"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_es_heartbeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- CALORIES -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="GOAL CALORIES"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_es_golcalories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="CALORIES"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_es_calories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- TIME -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="GOAL TIME"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_es_goltime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="TIME"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_es_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- SPEED -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="GOAL SPEED"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_es_golspeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="SPEED"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_es_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- DISTANCE -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="GOAL DISTANCE"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_es_goldistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="DISTANCE"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_es_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- COMMIT -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="50dp" >
+
+            <Button
+                android:id="@+id/btn_es_commit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:includeFontPadding="false"
+                android:text="COMMIT"
+                android:textColor="#ffff00"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <Button
+                android:id="@+id/btn_es_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:includeFontPadding="false"
+                android:text="CANCEL"
+                android:textColor="#ffff00"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

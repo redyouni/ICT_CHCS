@@ -1,0 +1,285 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <!-- TITLE -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="30dp"
+            android:paddingTop="20dp" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="EXERCISE RESULT"
+                android:textColor="#ff8c00"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- TIME -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="20dp"
+                android:text="START TIME"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_er_stime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="20dp"
+                android:text="END TIME"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_er_etime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- HRARTBEAT -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="HEARTBEAT"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_er_heartbeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="MAX HEARTBEAT"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_er_maxheartbeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- CALORIES -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="CALORIES"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_er_calories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- DISTANCE -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="DISTANCE"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_er_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- SPEED -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="SPEED"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_er_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="MAX SPEED"
+                android:textColor="#a4a4a4"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/txtView_er_maxspeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingRight="10dp"
+                android:text="test"
+                android:textColor="#00d2ff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- COMMIT -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="50dp" >
+
+            <Button
+                android:id="@+id/btn_er_commit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:includeFontPadding="false"
+                android:text="COMMIT"
+                android:textColor="#ffff00"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <Button
+                android:id="@+id/btn_er_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:includeFontPadding="false"
+                android:text="CANCEL"
+                android:textColor="#ffff00"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
