@@ -5,7 +5,6 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ict_chcs.ex_server_test.R;
 import com.ict_chcs.healthMonitor.Adapter.Php;
 
 import android.annotation.SuppressLint;

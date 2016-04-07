@@ -4,13 +4,14 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
+ <!-- 
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="20dp" >
 
-        <!-- TITLE -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,7 +31,6 @@
                 android:typeface="sans" />
         </LinearLayout>
 
-        <!-- TIME -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -84,7 +84,6 @@
                 android:typeface="sans" />
         </LinearLayout>
 
-        <!-- HRARTBEAT -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -136,7 +135,6 @@
                 android:typeface="sans" />
         </LinearLayout>
 
-        <!-- CALORIES -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -166,7 +164,6 @@
                 android:typeface="sans" />
         </LinearLayout>
 
-        <!-- DISTANCE -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -196,7 +193,6 @@
                 android:typeface="sans" />
         </LinearLayout>
 
-        <!-- SPEED -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -248,7 +244,6 @@
                 android:typeface="sans" />
         </LinearLayout>
 
-        <!-- COMMIT -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -281,5 +276,5 @@
                 android:typeface="sans" />
         </LinearLayout>
     </LinearLayout>
-
+ -->
 </RelativeLayout>

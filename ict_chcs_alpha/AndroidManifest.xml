@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ict_chcs.ex_server_test"
+    package="com.ict_chcs.healthMonitor"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -35,7 +35,7 @@
             android:name="com.ict_chcs.healthMonitor.SignUpActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name="com.ict_chcs.healthMonitor.ExResultActivity"
+            android:name="com.ict_chcs.healthMonitor.ExInfoActivity"
             android:launchMode="singleTask" />
         <activity
             android:name="com.ict_chcs.healthMonitor.ExStatusActivity"

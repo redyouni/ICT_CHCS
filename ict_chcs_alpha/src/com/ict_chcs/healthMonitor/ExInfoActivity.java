@@ -11,8 +11,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ict_chcs.ex_server_test.R;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -22,15 +20,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
-public class ExResultActivity extends Activity {
+public class ExInfoActivity extends Activity {
 
 	public phpDown task;
 	public phpInsert task_insert;
-	public static final String TAG = "MainActivity";
+	public static final String TAG = "ExInfoActivity";
 
 	public static String SERVER_URL = "http://192.168.0.168/";
 
@@ -45,11 +41,11 @@ public class ExResultActivity extends Activity {
 		}
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_ex_result);
+		setContentView(R.layout.activity_ex_info);
 
 		task_insert = new phpInsert();
 
-		findViewById(R.id.btn_commit).setOnClickListener(new View.OnClickListener() {
+/*		findViewById(R.id.btn_commit).setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -64,12 +60,12 @@ public class ExResultActivity extends Activity {
 
 				String sendLogin = SERVER_URL + "ict_chcs_setuser.php?" + "id=" + txtID + "&password=" + txtPW
 						+ "&name=" + txtName + "&age=" + txtAge + "&gender=" + txtGender + "&weight=" + txtWeight;
-				Toast.makeText(ExResultActivity.this, sendLogin, Toast.LENGTH_SHORT).show();
+				Toast.makeText(ExInfoActivity.this, sendLogin, Toast.LENGTH_SHORT).show();
 
 				task_insert.execute(sendLogin);
 			}
 		});
-
+*/
 	}
 
 	private void println(String msg) {

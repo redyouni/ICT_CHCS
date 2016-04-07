@@ -9,17 +9,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ict_chcs.ex_server_test.R;
 import com.ict_chcs.healthMonitor.Application;
+import com.ict_chcs.healthMonitor.R;
 import com.ict_chcs.healthMonitor.Adapter.Debug;
-import com.ict_chcs.healthMonitor.Adapter.Globals;
 import com.ict_chcs.healthMonitor.Adapter.Utility;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.widget.TextView;
 
 public class RPCAPI {
 	private static String TAG = "CJAPI";// this.getClass().getSimpleName();
