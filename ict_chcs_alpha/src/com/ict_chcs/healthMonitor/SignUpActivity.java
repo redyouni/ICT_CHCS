@@ -1,11 +1,12 @@
 package com.ict_chcs.healthMonitor;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ict_chcs.healthMonitor.Adapter.Php;
+import com.ict_chcs.healthMonitor.Adapter.HCSAPI;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -42,49 +43,31 @@ public class SignUpActivity extends Activity {
 
 		findViewById(R.id.btn_su_create).setOnClickListener(new View.OnClickListener() {
 
+			@SuppressWarnings("static-access")
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				String txtID = ((EditText) findViewById(R.id.edt_su_id)).getText().toString();
-				String txtPW = ((EditText) findViewById(R.id.edt_su_pw)).getText().toString();
-				String txtName = ((EditText) findViewById(R.id.edt_su_name)).getText().toString();
-				String txtAge = ((EditText) findViewById(R.id.edt_su_age)).getText().toString();
-				String txtGender = ((EditText) findViewById(R.id.edt_su_gender)).getText().toString();
-				String txtWeight = ((EditText) findViewById(R.id.edt_su_weight)).getText().toString();
+				ArrayList<String> mArrayList;
+				StringBuilder mRetJson = new StringBuilder ();
 
-				String sendLogin = SERVER_URL + "ict_chcs_setuser.php?" + "id=" + txtID + "&password=" + txtPW
-						+ "&name=" + txtName + "&age=" + txtAge + "&gender=" + txtGender + "&weight=" + txtWeight;
-				//Toast.makeText(SignUpActivity.this, sendLogin, Toast.LENGTH_SHORT).show();
+				mArrayList = new ArrayList<String>();
 
-				String result = null;
-				try {
-					result = new Php.Insert().execute(sendLogin).get();
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ExecutionException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				mArrayList.add(((EditText) findViewById(R.id.edt_su_id)).getText().toString());
+				mArrayList.add(((EditText) findViewById(R.id.edt_su_pw)).getText().toString());
+				mArrayList.add(((EditText) findViewById(R.id.edt_su_name)).getText().toString());
+				mArrayList.add(((EditText) findViewById(R.id.edt_su_age)).getText().toString());
+				mArrayList.add(((EditText) findViewById(R.id.edt_su_gender)).getText().toString());
+				mArrayList.add(((EditText) findViewById(R.id.edt_su_weight)).getText().toString());
 
-				try {
-
-					JSONObject root = new JSONObject(result);
-					String num_results = root.getString("status");
-
-					if (num_results.equalsIgnoreCase("OK")) {
+				if (Application.getHCSAPI().GetExUser(mArrayList, mRetJson) == true) {
 
 						// Login
-						Intent intent = new Intent(SignUpActivity.this, ExStatusActivity.class);
-						startActivity(intent);
-						finish();
-					} else {
-						msgbox("Please Sign up !!");
-					}
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Intent intent = new Intent(SignUpActivity.this, ExStatusActivity.class);
+					startActivity(intent);
+					finish();
+				} else {
+					msgbox("Please Sign up !!");
 				}
 			}
 		});

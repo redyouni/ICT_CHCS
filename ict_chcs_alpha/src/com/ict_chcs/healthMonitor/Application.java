@@ -1,7 +1,7 @@
 package com.ict_chcs.healthMonitor;
 
+import com.ict_chcs.healthMonitor.Adapter.HCSAPI;
 import com.ict_chcs.healthMonitor.Adapter.SharedPrefs;
-import com.ict_chcs.healthMonitor.Adapter.Utility;
 import com.ict_chcs.healthMonitor.JSONRPC.RPCAPI;
 
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -16,7 +16,7 @@ public class Application extends android.app.Application {
 
 	private SharedPrefs mSharePref = null;
 	private Boolean mIsRun = false;
-	private RPCAPI mCJAPI = null;
+	private static HCSAPI mHCSAPI = null;
 
 	@Override
 	public void onCreate() {
@@ -39,7 +39,7 @@ public class Application extends android.app.Application {
 			e.printStackTrace();
 		} 
 		
-		mCJAPI = new RPCAPI(this);
+		mHCSAPI = new HCSAPI();
 	}
 	
 	@Override
@@ -70,7 +70,7 @@ public class Application extends android.app.Application {
 		return mIsRun;
     }
 	
-	public RPCAPI getCJAPI() {
-		return mCJAPI;
+	public static HCSAPI getHCSAPI() {
+		return mHCSAPI;
     }
 }

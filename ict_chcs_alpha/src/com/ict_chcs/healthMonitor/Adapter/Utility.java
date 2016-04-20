@@ -31,6 +31,7 @@ import android.net.NetworkInfo.State;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -349,6 +350,19 @@ public class Utility {
 		Calendar calendar = Calendar.getInstance();
 		Date date = calendar.getTime();
 		return new SimpleDateFormat("yyyyMMddHHmmss").format(date);
+	}
+	
+
+	public static void msgbox(final Context context, String msg) {
+		final String output = msg;
+		Handler handler = new Handler();
+
+		handler.post(new Runnable() {
+			public void run() {
+				Log.d(TAG, output);
+				Toast.makeText(context.getApplicationContext(), output, Toast.LENGTH_LONG).show();
+			}
+		});
 	}
 }
 

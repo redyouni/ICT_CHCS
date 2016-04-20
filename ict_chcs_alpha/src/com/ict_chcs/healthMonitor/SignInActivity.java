@@ -1,13 +1,8 @@
 package com.ict_chcs.healthMonitor;
 
-import java.util.concurrent.ExecutionException;
+import java.util.ArrayList;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.ict_chcs.healthMonitor.Adapter.Php;
-import com.ict_chcs.healthMonitor.Adapter.Php.Down;
-import com.ict_chcs.healthMonitor.Adapter.Php.Insert;
+import com.ict_chcs.healthMonitor.Adapter.Utility;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -23,11 +18,7 @@ import android.widget.Toast;
 
 public class SignInActivity extends Activity {
 
-	public Down phpDown;
-	public Insert phpInsert;
 	public static final String TAG = "SignInActivity";
-
-	public static String SERVER_URL = "http://192.168.0.168/";
 
 	Handler handler = new Handler();
 
@@ -42,52 +33,31 @@ public class SignInActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_signin);
 
-		// phpDown = new Php.Down();
-
 		findViewById(R.id.btn_si_signin).setOnClickListener(new View.OnClickListener() {
 
+			@SuppressWarnings("static-access")
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				String txtID = ((EditText) findViewById(R.id.edt_si_id)).getText().toString();
-				String txtPW = ((EditText) findViewById(R.id.edt_si_pw)).getText().toString();
+				ArrayList<String> mArrayList;
+				StringBuilder mRetJson = new StringBuilder ();
 
-				String sendLogin = SERVER_URL + "ict_chcs_getuser.php?" + "id=" + txtID + "&password=" + txtPW;
-				// Toast.makeText(SignInActivity.this, sendLogin,
-				// Toast.LENGTH_SHORT).show();
-				String result = null;
+				mArrayList = new ArrayList<String>();
+				mArrayList.add(((EditText) findViewById(R.id.edt_si_id)).getText().toString());
+				mArrayList.add(((EditText) findViewById(R.id.edt_si_pw)).getText().toString());
+				
+				if (Application.getHCSAPI().GetExUser(mArrayList, mRetJson) == true) {
 
-				try {
-					result = new Php.Down().execute(sendLogin).get();
-					// Toast.makeText(SignInActivity.this, result,
-					// Toast.LENGTH_SHORT).show();
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ExecutionException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					// Login
+					Intent intent = new Intent(SignInActivity.this, ExStatusActivity.class);
+					startActivity(intent);
+					finish();
+
+				} else {
+					Utility.msgbox(SignInActivity.this, "Please Sign up !!");
 				}
 
-				try {
-
-					JSONObject root = new JSONObject(result);
-					String num_results = root.getString("num_results");
-
-					if (Integer.parseInt(num_results) == 1) {
-
-						// Login
-						Intent intent = new Intent(SignInActivity.this, ExStatusActivity.class);
-						startActivity(intent);
-						finish();
-					} else {
-						msgbox("Please Sign up !!");
-					}
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
 		});
 
@@ -104,16 +74,6 @@ public class SignInActivity extends Activity {
 			}
 		});
 
-	}
-
-	private void msgbox(String msg) {
-		final String output = msg;
-		handler.post(new Runnable() {
-			public void run() {
-				Log.d(TAG, output);
-				Toast.makeText(getApplicationContext(), output, Toast.LENGTH_LONG).show();
-			}
-		});
 	}
 
 	@Override
@@ -136,6 +96,6 @@ public class SignInActivity extends Activity {
 		String type = intent.getStringExtra("type");
 		String data = intent.getStringExtra("data");
 
-		msgbox("DATA : " + command + ", " + type + ", " + data);
+		Utility.msgbox(SignInActivity.this, "DATA : " + command + ", " + type + ", " + data);
 	}
 }
