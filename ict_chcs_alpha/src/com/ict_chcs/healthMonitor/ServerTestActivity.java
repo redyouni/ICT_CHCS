@@ -33,6 +33,31 @@ public class ServerTestActivity extends Activity {
 		mRand = new Random();
 		((TextView) findViewById(R.id.btn_st_result)).setMovementMethod(new ScrollingMovementMethod());
 
+		findViewById(R.id.btn_st_clear).setOnClickListener(new View.OnClickListener() {
+
+			@SuppressWarnings("static-access")
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				((TextView) findViewById(R.id.btn_st_result)).setText("");
+			}
+		});
+		((TextView) findViewById(R.id.btn_st_result)).setMovementMethod(new ScrollingMovementMethod());
+
+		findViewById(R.id.btn_st_getconnection).setOnClickListener(new View.OnClickListener() {
+
+			@SuppressWarnings("static-access")
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				StringBuilder mRetJson = new StringBuilder ();
+				Application.getHCSAPI().GetServerConnection(mRetJson);
+
+				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+
+			}
+		});
 		findViewById(R.id.btn_st_getuser).setOnClickListener(new View.OnClickListener() {
 
 			@SuppressWarnings("static-access")

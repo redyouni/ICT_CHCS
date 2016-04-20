@@ -26,6 +26,8 @@ public class HCSAPI {
 
 	public static String SERVER_URL = "http://192.168.0.168/";
 
+	public static String GET_CONNECTOIN = "ict_chcs_get_connection.php";
+	
 	public static String GET_EX_USER = "ict_chcs_get_ex_user.php";
 	public static String SET_EX_USER = "ict_chcs_set_ex_user.php";
 	public static String DEL_EX_USER = "ict_chcs_del_ex_user.php";
@@ -44,22 +46,57 @@ public class HCSAPI {
 	public static String REQUEST = null;
 	
 /*
-	public static Boolean GetExUser(ArrayList<String> ArrayList);
-	public static Boolean SetExUser(ArrayList<String> ArrayList);
-	public static Boolean DelExUser(String id, Boolean all);
+	public static Boolean GetServerConnection(StringBuilder retJson);
+	public static Boolean GetExUser(ArrayList<String> ArrayList, StringBuilder retJson);
+	public static Boolean SetExUser(ArrayList<String> ArrayList, StringBuilder retJson);
+	public static Boolean DelExUser(String id, Boolean all, StringBuilder retJson);
 
-	public static Boolean GetExResult(ArrayList<String> ArrayList);
-	public static Boolean SetExResult(ArrayList<String> ArrayList);
-	public static Boolean DelExResult(String id, Boolean all);
+	public static Boolean GetExResult(ArrayList<String> ArrayList, StringBuilder retJson);
+	public static Boolean SetExResult(ArrayList<String> ArrayList, StringBuilder retJson);
+	public static Boolean DelExResult(String id, Boolean all, StringBuilder retJson);
 
-	public static Boolean GetExGoalSetting(ArrayList<String> ArrayList);
-	public static Boolean SetExGoalSetting(ArrayList<String> ArrayList);
-	public static Boolean DelExGoalSetting(String id, Boolean all);
+	public static Boolean GetExGoalSetting(ArrayList<String> ArrayList, StringBuilder retJson);
+	public static Boolean SetExGoalSetting(ArrayList<String> ArrayList, StringBuilder retJson);
+	public static Boolean DelExGoalSetting(String id, Boolean all, StringBuilder retJson);
 	
-	public static Boolean GetExEquipment(ArrayList<String> ArrayList);
-	public static Boolean SetExEquipment(ArrayList<String> ArrayList);
-	public static Boolean DelExEquipment(String name, Boolean all);	
+	public static Boolean GetExEquipment(ArrayList<String> ArrayList, StringBuilder retJson);
+	public static Boolean SetExEquipment(ArrayList<String> ArrayList, StringBuilder retJson);
+	public static Boolean DelExEquipment(String name, Boolean all, StringBuilder retJson);	
 */	
+	
+	public static Boolean GetServerConnection(StringBuilder retJson) {
+
+		String result = null;
+		REQUEST = SERVER_URL + GET_CONNECTOIN;
+
+		try {
+			result = new Query().execute(REQUEST).get();
+			if(retJson != null) retJson.append(result);
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+
+			JSONObject root = new JSONObject(result);
+			String num_results = root.getString("status");
+
+			if (num_results.equalsIgnoreCase("OK")) {
+				return true;
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			retJson.append("server is not opened.");
+		}
+
+		return false;
+	}
 	
 	public static Boolean GetExUser(ArrayList<String> ArrayList, StringBuilder retJson) {
 
@@ -81,9 +118,9 @@ public class HCSAPI {
 		try {
 
 			JSONObject root = new JSONObject(result);
-			String num_results = root.getString("num_results");
+			String num_results = root.getString("status");
 
-			if (Integer.parseInt(num_results) == 1) {
+			if (num_results.equalsIgnoreCase("OK")) {
 				return true;
 			}
 		} catch (JSONException e) {
@@ -119,7 +156,6 @@ public class HCSAPI {
 				String num_results = root.getString("status");
 
 				if (num_results.equalsIgnoreCase("OK")) {
-
 					return true;
 				}
 			} catch (JSONException e) {
@@ -158,7 +194,6 @@ public class HCSAPI {
 			String num_results = root.getString("status");
 
 			if (num_results.equalsIgnoreCase("OK")) {
-
 				return true;
 			}
 		} catch (JSONException e) {
@@ -192,7 +227,6 @@ public class HCSAPI {
 				String num_results = root.getString("status");
 
 				if (num_results.equalsIgnoreCase("OK")) {
-
 					return true;
 				}
 			} catch (JSONException e) {
@@ -232,7 +266,6 @@ public class HCSAPI {
 				String num_results = root.getString("status");
 
 				if (num_results.equalsIgnoreCase("OK")) {
-
 					return true;
 				}
 			} catch (JSONException e) {
@@ -271,7 +304,6 @@ public class HCSAPI {
 			String num_results = root.getString("status");
 
 			if (num_results.equalsIgnoreCase("OK")) {
-
 				return true;
 			}
 		} catch (JSONException e) {
@@ -305,7 +337,6 @@ public class HCSAPI {
 				String num_results = root.getString("status");
 
 				if (num_results.equalsIgnoreCase("OK")) {
-
 					return true;
 				}
 			} catch (JSONException e) {
@@ -342,7 +373,6 @@ public class HCSAPI {
 				String num_results = root.getString("status");
 
 				if (num_results.equalsIgnoreCase("OK")) {
-
 					return true;
 				}
 			} catch (JSONException e) {
@@ -381,7 +411,6 @@ public class HCSAPI {
 			String num_results = root.getString("status");
 
 			if (num_results.equalsIgnoreCase("OK")) {
-
 				return true;
 			}
 		} catch (JSONException e) {
@@ -411,9 +440,9 @@ public class HCSAPI {
 		try {
 
 			JSONObject root = new JSONObject(result);
-			String num_results = root.getString("num_results");
+			String num_results = root.getString("status");
 
-			if (Integer.parseInt(num_results) == 1) {
+			if (num_results.equalsIgnoreCase("OK")) {
 				return true;
 			}
 		} catch (JSONException e) {
@@ -447,7 +476,6 @@ public class HCSAPI {
 				String num_results = root.getString("status");
 
 				if (num_results.equalsIgnoreCase("OK")) {
-
 					return true;
 				}
 			} catch (JSONException e) {
@@ -486,7 +514,6 @@ public class HCSAPI {
 			String num_results = root.getString("status");
 
 			if (num_results.equalsIgnoreCase("OK")) {
-
 				return true;
 			}
 		} catch (JSONException e) {
