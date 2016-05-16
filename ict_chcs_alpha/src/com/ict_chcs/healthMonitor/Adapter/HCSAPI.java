@@ -24,7 +24,7 @@ public class HCSAPI {
 
 	public static final boolean ENABLE_DEBUG = true;
 
-	public static String SERVER_URL = "http://192.168.0.168/";
+	public static String SERVER_URL = "http://192.168.10.168/";
 
 	public static String GET_CONNECTOIN = "ict_chcs_get_connection.php";
 	
@@ -133,10 +133,10 @@ public class HCSAPI {
 
 	public static Boolean SetExUser(ArrayList<String> ArrayList, StringBuilder retJson) {
 
-		if (ArrayList.size() == 6) {
+		if (ArrayList.size() == 7) {
 			REQUEST = SERVER_URL + SET_EX_USER + "?" + "id=" + ArrayList.get(0) + "&" + "password=" + ArrayList.get(1)
 					+ "&name=" + ArrayList.get(2) + "&age=" + ArrayList.get(3) + "&gender=" + ArrayList.get(4)
-					+ "&weight=" + ArrayList.get(5);
+					+ "&weight=" + ArrayList.get(5) + "&rfid=" + ArrayList.get(6);
 
 			String result = null;
 			try {
@@ -162,6 +162,39 @@ public class HCSAPI {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+
+		return false;
+	}
+	
+	public static Boolean GetExUserWRfid(ArrayList<String> ArrayList, StringBuilder retJson) {
+
+		String result = null;
+		REQUEST = SERVER_URL + GET_EX_USER + "?" + "rfid=" + ArrayList.get(0);
+
+		try {
+			result = new Query().execute(REQUEST).get();
+			if(retJson != null) retJson.append(result);
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+
+			JSONObject root = new JSONObject(result);
+			String num_results = root.getString("status");
+
+			if (num_results.equalsIgnoreCase("OK")) {
+				return true;
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		return false;
@@ -243,10 +276,10 @@ public class HCSAPI {
 
 		if (ArrayList.size() == 14) {
 			REQUEST = SERVER_URL + SET_EX_RESULT + "?" + "id=" + ArrayList.get(0) + "&ex_variety=" + ArrayList.get(1)
-					+ "&st_time=" + ArrayList.get(2) + "&en_time=" + ArrayList.get(3) + "&ex_heartplus=" + ArrayList.get(4)
-					+ "&ex_heartplus_max=" + ArrayList.get(5) + "&ex_calories=" + ArrayList.get(6) + "&ex_calories_max=" + ArrayList.get(7) 
-					+ "&ex_distance=" + ArrayList.get(8)	+ "&ex_distance_max=" + ArrayList.get(9) + "&ex_speed=" + ArrayList.get(10) 
-					+ "&ex_speed_max=" + ArrayList.get(11)	+ "&ex_incline=" + ArrayList.get(12) + "&ex_incline_max=" + ArrayList.get(13);
+					+ "&st_time=" + ArrayList.get(2) + "&en_time=" + ArrayList.get(3) + "&ex_time="+ ArrayList.get(4) 
+					+ "&ex_heartplus=" + ArrayList.get(5) + "&ex_calories=" + ArrayList.get(6) 	+ "&ex_distance=" + ArrayList.get(7)
+					+ "&ex_speed=" + ArrayList.get(8) + "&ex_incline=" + ArrayList.get(9) + "&ex_level=" + ArrayList.get(10)
+					+ "&ex_rpm=" + ArrayList.get(11)+ "&ex_watts=" + ArrayList.get(12)+ "&ex_mets=" + ArrayList.get(13);
 
 			String result = null;
 			try {

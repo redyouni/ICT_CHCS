@@ -93,7 +93,9 @@ public class ServerTestActivity extends Activity {
 				mArrayList.add(getRandom(1000, 1));
 				mArrayList.add(getRandom(1000, 1));
 				mArrayList.add(getRandom(1000, 1));
+				mArrayList.add(getRandom(1000, 1));				
 				mArrayList.add(getRandom(1000, 1));
+
 				Application.getHCSAPI().SetExUser(mArrayList, mRetJson);
 
 				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
