@@ -444,7 +444,6 @@ int id btn_st_getexequipment 0x7f090068
 int id btn_st_getexgoalsetting 0x7f090065
 int id btn_st_getexresult 0x7f090062
 int id btn_st_getuser 0x7f09005f
-int id btn_st_result 0x7f09005c
 int id btn_st_setexequipment 0x7f090069
 int id btn_st_setexgoalsetting 0x7f090066
 int id btn_st_setexresult 0x7f090063
@@ -539,6 +538,7 @@ int id txtView_es_heartbeat 0x7f090051
 int id txtView_es_incline 0x7f09004f
 int id txtView_es_speed 0x7f090057
 int id txtView_es_time 0x7f090055
+int id txtView_st_result 0x7f09005c
 int id up 0x7f090001
 int id useLogo 0x7f090013
 int id withText 0x7f09001d

@@ -1,7 +1,12 @@
-package com.ict_chcs.healthMonitor;
+package com.ict_chcs.st;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
+
+import com.ict_chcs.healthMonitor.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -31,7 +36,7 @@ public class ServerTestActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_server_test);
 		mRand = new Random();
-		((TextView) findViewById(R.id.btn_st_result)).setMovementMethod(new ScrollingMovementMethod());
+		((TextView) findViewById(R.id.txtView_st_result)).setMovementMethod(new ScrollingMovementMethod());
 
 		findViewById(R.id.btn_st_clear).setOnClickListener(new View.OnClickListener() {
 
@@ -39,10 +44,10 @@ public class ServerTestActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				((TextView) findViewById(R.id.btn_st_result)).setText("");
+				((TextView) findViewById(R.id.txtView_st_result)).setText("");
 			}
 		});
-		((TextView) findViewById(R.id.btn_st_result)).setMovementMethod(new ScrollingMovementMethod());
+		((TextView) findViewById(R.id.txtView_st_result)).setMovementMethod(new ScrollingMovementMethod());
 
 		findViewById(R.id.btn_st_getconnection).setOnClickListener(new View.OnClickListener() {
 
@@ -51,10 +56,10 @@ public class ServerTestActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				StringBuilder mRetJson = new StringBuilder ();
+				StringBuilder mRetJson = new StringBuilder();
 				Application.getHCSAPI().GetServerConnection(mRetJson);
 
-				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+				((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
 
 			}
 		});
@@ -66,14 +71,14 @@ public class ServerTestActivity extends Activity {
 				// TODO Auto-generated method stub
 
 				ArrayList<String> mArrayList;
-				StringBuilder mRetJson = new StringBuilder ();
+				StringBuilder mRetJson = new StringBuilder();
 
 				mArrayList = new ArrayList<String>();
 				mArrayList.add("0");
 				mArrayList.add("0");
 				Application.getHCSAPI().GetExUser(mArrayList, mRetJson);
 
-				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+				((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
 
 			}
 		});
@@ -83,22 +88,23 @@ public class ServerTestActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+
 				ArrayList<String> mArrayList;
-				StringBuilder mRetJson = new StringBuilder ();
+				StringBuilder mRetJson = new StringBuilder();
 
 				mArrayList = new ArrayList<String>();
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));				
-				mArrayList.add(getRandom(1000, 1));
+				mArrayList.add(getRandom(1000, 1)); // id
+				mArrayList.add(getRandom(1000, 1)); // password
+				mArrayList.add(getRandom(1000, 1)); // name
+
+				mArrayList.add(((Integer.parseInt(getRandom(1000, 1)) % 2) != 0 ? "MALE" : "FEMALE")); // gender
+				mArrayList.add(getRandom(1000, 1)); // age
+				mArrayList.add(getRandom(1000, 1)); // weight
+				mArrayList.add(getRandom(1000, 1)); // rfid
 
 				Application.getHCSAPI().SetExUser(mArrayList, mRetJson);
 
-				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+				((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
 
 			}
 		});
@@ -108,13 +114,13 @@ public class ServerTestActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-				StringBuilder mRetJson = new StringBuilder ();
+
+				StringBuilder mRetJson = new StringBuilder();
 				String id = "1";
 				Boolean all = true;
 				Application.getHCSAPI().DelExUser(id, all, mRetJson);
 
-				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+				((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
 
 			}
 		});
@@ -127,7 +133,7 @@ public class ServerTestActivity extends Activity {
 				// TODO Auto-generated method stub
 
 				ArrayList<String> mArrayList;
-				StringBuilder mRetJson = new StringBuilder ();
+				StringBuilder mRetJson = new StringBuilder();
 
 				mArrayList = new ArrayList<String>();
 				mArrayList.add("0");
@@ -135,7 +141,7 @@ public class ServerTestActivity extends Activity {
 				mArrayList.add("0");
 				Application.getHCSAPI().GetExResult(mArrayList, mRetJson);
 
-				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+				((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
 
 			}
 		});
@@ -147,26 +153,44 @@ public class ServerTestActivity extends Activity {
 				// TODO Auto-generated method stub
 
 				ArrayList<String> mArrayList;
-				StringBuilder mRetJson = new StringBuilder ();
+				StringBuilder mRetJson = new StringBuilder();
 
 				mArrayList = new ArrayList<String>();
 				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
-				mArrayList.add(getRandom(1000, 1));
+				mArrayList.add(((Integer.parseInt(getRandom(1000, 1)) % 2) != 0 ? "BIKE" : "TREADMILL")); // gender
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+				Date curDate = new Date();
+				String st_time = sdf.format(curDate);
+				mArrayList.add(st_time); //st_time
+
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(curDate);
+
+				int min = Integer.parseInt(getRandom(60, 1));
+				cal.add(Calendar.MINUTE, min);
+
+				int sec = Integer.parseInt(getRandom(60, 1));
+				cal.add(Calendar.SECOND, sec);
+
+				String en_time = sdf.format(cal.getTime());  
+				mArrayList.add(en_time); //en_time
+
+				String ex_time = String.format("%02d:%02d", min, sec);	
+				mArrayList.add(ex_time); //ex_time
+
+				mArrayList.add(getRandom(1000, 1)); //ex_heartplus
+				mArrayList.add(getRandom(1000, 1)); //ex_carories
+				mArrayList.add(getRandom(1000, 1)); //ex_distance
+				mArrayList.add(getRandom(1000, 1)); //ex_speed
+				mArrayList.add(getRandom(1000, 1)); //ex_incline
+				mArrayList.add(getRandom(1000, 1)); //ex_level
+				mArrayList.add(getRandom(1000, 1)); //ex_rpm
+				mArrayList.add(getRandom(1000, 1)); //ex_watts
+				mArrayList.add(getRandom(1000, 1)); //ex_mets
 				Application.getHCSAPI().SetExResult(mArrayList, mRetJson);
 
-				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+				((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
 
 			}
 		});
@@ -176,13 +200,13 @@ public class ServerTestActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-				StringBuilder mRetJson = new StringBuilder ();
+
+				StringBuilder mRetJson = new StringBuilder();
 				String id = "1";
 				Boolean all = true;
 				Application.getHCSAPI().DelExResult(id, all, mRetJson);
 
-				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+				((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
 
 			}
 		});
@@ -195,14 +219,14 @@ public class ServerTestActivity extends Activity {
 				// TODO Auto-generated method stub
 
 				ArrayList<String> mArrayList;
-				StringBuilder mRetJson = new StringBuilder ();
+				StringBuilder mRetJson = new StringBuilder();
 
 				mArrayList = new ArrayList<String>();
 				mArrayList.add("0");
 				mArrayList.add("0");
 				Application.getHCSAPI().GetExGoalSetting(mArrayList, mRetJson);
 
-				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+				((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
 
 			}
 		});
@@ -214,7 +238,7 @@ public class ServerTestActivity extends Activity {
 				// TODO Auto-generated method stub
 
 				ArrayList<String> mArrayList;
-				StringBuilder mRetJson = new StringBuilder ();
+				StringBuilder mRetJson = new StringBuilder();
 
 				mArrayList = new ArrayList<String>();
 				mArrayList.add(getRandom(1000, 1));
@@ -225,7 +249,7 @@ public class ServerTestActivity extends Activity {
 				mArrayList.add(getRandom(1000, 1));
 				Application.getHCSAPI().SetExGoalSetting(mArrayList, mRetJson);
 
-				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+				((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
 
 			}
 		});
@@ -235,13 +259,13 @@ public class ServerTestActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-				StringBuilder mRetJson = new StringBuilder ();
+
+				StringBuilder mRetJson = new StringBuilder();
 				String id = "1";
 				Boolean all = true;
 				Application.getHCSAPI().DelExGoalSetting(id, all, mRetJson);
 
-				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+				((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
 
 			}
 		});
@@ -254,13 +278,13 @@ public class ServerTestActivity extends Activity {
 				// TODO Auto-generated method stub
 
 				ArrayList<String> mArrayList;
-				StringBuilder mRetJson = new StringBuilder ();
+				StringBuilder mRetJson = new StringBuilder();
 
 				mArrayList = new ArrayList<String>();
 				mArrayList.add("0");
 				Application.getHCSAPI().GetExEquipment(mArrayList, mRetJson);
 
-				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+				((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
 
 			}
 		});
@@ -272,7 +296,7 @@ public class ServerTestActivity extends Activity {
 				// TODO Auto-generated method stub
 
 				ArrayList<String> mArrayList;
-				StringBuilder mRetJson = new StringBuilder ();
+				StringBuilder mRetJson = new StringBuilder();
 
 				mArrayList = new ArrayList<String>();
 				mArrayList.add(getRandom(1000, 1));
@@ -280,7 +304,7 @@ public class ServerTestActivity extends Activity {
 
 				Application.getHCSAPI().SetExEquipment(mArrayList, mRetJson);
 
-				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+				((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
 
 			}
 		});
@@ -290,13 +314,13 @@ public class ServerTestActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-				StringBuilder mRetJson = new StringBuilder ();
+
+				StringBuilder mRetJson = new StringBuilder();
 				String id = "1";
 				Boolean all = true;
 				Application.getHCSAPI().DelExEquipment(id, all, mRetJson);
 
-				((TextView) findViewById(R.id.btn_st_result)).setText(mRetJson);
+				((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
 
 			}
 		});

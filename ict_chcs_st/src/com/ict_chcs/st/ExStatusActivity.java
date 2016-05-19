@@ -1,4 +1,6 @@
-package com.ict_chcs.healthMonitor;
+package com.ict_chcs.st;
+
+import com.ict_chcs.healthMonitor.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

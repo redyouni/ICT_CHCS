@@ -1,4 +1,4 @@
-package com.ict_chcs.healthMonitor.JSONRPC;
+package com.ict_chcs.st.JSONRPC;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -9,10 +9,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ict_chcs.healthMonitor.Application;
 import com.ict_chcs.healthMonitor.R;
-import com.ict_chcs.healthMonitor.Adapter.Debug;
-import com.ict_chcs.healthMonitor.Adapter.Utility;
+import com.ict_chcs.st.Application;
+import com.ict_chcs.st.Adapter.Debug;
+import com.ict_chcs.st.Adapter.Utility;
 
 import android.content.Context;
 import android.os.Handler;

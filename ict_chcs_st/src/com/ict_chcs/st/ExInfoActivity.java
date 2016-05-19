@@ -1,4 +1,4 @@
-package com.ict_chcs.healthMonitor;
+package com.ict_chcs.st;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -10,6 +10,8 @@ import java.net.URL;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.ict_chcs.healthMonitor.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

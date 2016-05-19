@@ -42,7 +42,7 @@
             android:paddingTop="10dp" >
 
             <TextView
-                android:id="@+id/btn_st_result"
+                android:id="@+id/txtView_st_result"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:background="#FFFFFF"
@@ -102,17 +102,35 @@
                 android:textStyle="bold"
                 android:typeface="sans" />
 
-            <Button
-                android:id="@+id/btn_st_setuser"
-                android:layout_width="wrap_content"
+          <!--   <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:includeFontPadding="false"
-                android:text="setuser"
-                android:textColor="#008000"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                android:typeface="sans" />
+                android:orientation="horizontal" > -->
+
+                <Button
+                    android:id="@+id/btn_st_setuser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                     android:layout_weight="5"
+                    android:text="setuser"
+                    android:textColor="#008000"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+               <!--  <TextView
+                    android:id="@+id/txtView_st_setuser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:hint="id"
+                    android:includeFontPadding="false"
+                    android:textColor="#008000"
+                    android:textSize="15dp"
+                    android:typeface="sans" /> -->
+          <!--   </LinearLayout> -->
 
             <Button
                 android:id="@+id/btn_st_deluser"

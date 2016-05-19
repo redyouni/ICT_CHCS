@@ -1,4 +1,4 @@
-package com.ict_chcs.healthMonitor.Adapter;
+package com.ict_chcs.st.Adapter;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;

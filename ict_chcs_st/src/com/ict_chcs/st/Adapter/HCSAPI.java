@@ -1,4 +1,4 @@
-package com.ict_chcs.healthMonitor.Adapter;
+package com.ict_chcs.st.Adapter;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -12,8 +12,8 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ict_chcs.healthMonitor.ExStatusActivity;
-import com.ict_chcs.healthMonitor.SignUpActivity;
+import com.ict_chcs.st.ExStatusActivity;
+import com.ict_chcs.st.SignUpActivity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -24,7 +24,7 @@ public class HCSAPI {
 
 	public static final boolean ENABLE_DEBUG = true;
 
-	public static String SERVER_URL = "http://192.168.10.168/";
+	public static String SERVER_URL = "http://192.168.0.168/";
 
 	public static String GET_CONNECTOIN = "ict_chcs_get_connection.php";
 	
@@ -135,7 +135,7 @@ public class HCSAPI {
 
 		if (ArrayList.size() == 7) {
 			REQUEST = SERVER_URL + SET_EX_USER + "?" + "id=" + ArrayList.get(0) + "&" + "password=" + ArrayList.get(1)
-					+ "&name=" + ArrayList.get(2) + "&age=" + ArrayList.get(3) + "&gender=" + ArrayList.get(4)
+					+ "&name=" + ArrayList.get(2) + "&gender=" + ArrayList.get(3) + "&age=" + ArrayList.get(4)
 					+ "&weight=" + ArrayList.get(5) + "&rfid=" + ArrayList.get(6);
 
 			String result = null;

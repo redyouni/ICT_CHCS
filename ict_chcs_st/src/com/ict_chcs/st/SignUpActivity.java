@@ -1,4 +1,4 @@
-package com.ict_chcs.healthMonitor;
+package com.ict_chcs.st;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -6,7 +6,8 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ict_chcs.healthMonitor.Adapter.HCSAPI;
+import com.ict_chcs.healthMonitor.R;
+import com.ict_chcs.st.Adapter.HCSAPI;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

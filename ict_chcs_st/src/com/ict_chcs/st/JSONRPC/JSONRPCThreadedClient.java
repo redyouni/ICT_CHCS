@@ -1,4 +1,4 @@
-package com.ict_chcs.healthMonitor.JSONRPC;
+package com.ict_chcs.st.JSONRPC;
 
 import java.util.UUID;
 

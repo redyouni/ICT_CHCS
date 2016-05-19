@@ -1,8 +1,8 @@
-package com.ict_chcs.healthMonitor;
+package com.ict_chcs.st;
 
-import com.ict_chcs.healthMonitor.Adapter.HCSAPI;
-import com.ict_chcs.healthMonitor.Adapter.SharedPrefs;
-import com.ict_chcs.healthMonitor.JSONRPC.RPCAPI;
+import com.ict_chcs.st.Adapter.HCSAPI;
+import com.ict_chcs.st.Adapter.SharedPrefs;
+import com.ict_chcs.st.JSONRPC.RPCAPI;
 
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
