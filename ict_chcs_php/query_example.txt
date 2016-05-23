@@ -1,0 +1,7 @@
+http://192.168.0.168/ict_chcs_set_ex_user.php?id=test&password=test&name=test&gender=1&age=1&weight=3&rfid=1234567890
+http://192.168.0.168/ict_chcs_get_ex_user.php?id=test&password=test
+http://192.168.0.168/ict_chcs_get_ex_user.php?rfid=1010001043695103
+
+http://192.168.0.168/ict_chcs_set_ex_result.php?id=1&ex_variety=1&st_time=1&en_time=1&ex_time=1&ex_heartplus=1&ex_calories=1&ex_distance=1&ex_speed=1&ex_incline=1&ex_level=1&ex_rpm=1&ex_watts=1&ex_mets=1
+
+http://192.168.0.168/ict_chcs_get_ex_result.php?id=1&ex_variety=1&st_time=1
