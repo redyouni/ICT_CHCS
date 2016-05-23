@@ -19,7 +19,7 @@ public class HCSAPI {
 
 	public static final boolean ENABLE_DEBUG = true;
 
-	public static String SERVER_URL = "http://192.168.10.168/";
+	public static String SERVER_URL = "http://192.168.0.168/";
 
 	public static String GET_CONNECTOIN = "ict_chcs_get_connection.php";
 
