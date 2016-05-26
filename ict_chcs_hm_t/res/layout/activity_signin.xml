@@ -1,0 +1,191 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/girl_running_sea_beach_79930_1920x1080"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <!-- NETWORK STATUS -->
+
+    <include
+        android:id="@+id/common_include_network_status"
+        layout="@layout/view_network_status" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <!-- WELCOME -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:padding="10dp"
+                android:text="Welcome to ICT Convergence Health Care System"
+                android:textColor="#ffffff"
+                android:textSize="35dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- TITLE -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:paddingBottom="30dp" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="Sign in to "
+                    android:textColor="#FFFFFF"
+                    android:textSize="30dp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="200dp"
+                android:layout_marginRight="200dp"
+                android:layout_weight="3"
+                android:orientation="vertical" >
+
+                <!-- ID -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="10dp" >
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:includeFontPadding="false"
+                        android:gravity="right"
+                        android:paddingRight="30dp"
+                        android:text="User ID  :  "
+                        android:textColor="#FFFFFF"
+                        android:textSize="20dp"
+                        android:typeface="sans" />
+
+                    <EditText
+                        android:id="@+id/edt_si_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="7"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:singleLine="true"
+                        android:maxLength="10"
+                        android:text="1"
+                        android:textColor="#00d2ff"
+                        android:textSize="20dp"
+                        android:typeface="sans" />
+                </LinearLayout>
+
+                <!-- PASSWORD -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="10dp" >
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:includeFontPadding="false"
+                        android:paddingRight="30dp"
+                        android:gravity="right"
+                        android:text="Password  :  "
+                        android:textColor="#FFFFFF"
+                        android:textSize="20dp"
+                        android:typeface="sans" />
+
+                    <EditText
+                        android:id="@+id/edt_si_pw"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="7"
+                        android:singleLine="true"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:maxLength="10"
+                        android:text="1"
+                        android:textColor="#00d2ff"
+                        android:textSize="20dp"
+                        android:typeface="sans" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- SIGN -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_si_signin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:background="#00ff0000"
+                android:includeFontPadding="false"
+                android:text="SIGN IN"
+                android:textColor="#F0E68C"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <Button
+                android:id="@+id/btn_si_signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:background="#00ff0000"
+                android:includeFontPadding="false"
+                android:text="SIGN UP"
+                android:textColor="#228B22"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

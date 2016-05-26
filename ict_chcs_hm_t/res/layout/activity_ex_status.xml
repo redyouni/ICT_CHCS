@@ -1,0 +1,418 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <!-- NETWORK STATUS -->
+
+    <include
+        android:id="@+id/common_include_network_status"
+        layout="@layout/view_network_status" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="USER INFORMATION"
+                        android:textColor="#ff8c00"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:typeface="sans" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="7" >
+
+                        <ImageView
+                            android:id="@+id/img_es_face"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/health_logo2" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:orientation="vertical" >
+
+                        <!-- ID -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="10dp" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:includeFontPadding="false"
+                                android:text="USER ID"
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:typeface="sans" />
+
+                            <TextView
+                                android:id="@+id/txtView_es_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:includeFontPadding="false"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:typeface="sans" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="10dp" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:includeFontPadding="false"
+                                android:text="PASSWORD"
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:typeface="sans" />
+
+                            <TextView
+                                android:id="@+id/txtView_es_passwd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:includeFontPadding="false"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:typeface="sans" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="10dp" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:includeFontPadding="false"
+                                android:text="NAME"
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:typeface="sans" />
+
+                            <TextView
+                                android:id="@+id/txtView_es_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:includeFontPadding="false"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:typeface="sans" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="10dp" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:includeFontPadding="false"
+                                android:text="WEIGHT"
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:typeface="sans" />
+
+                            <TextView
+                                android:id="@+id/txtView_es_weight"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:includeFontPadding="false"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:typeface="sans" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="10dp" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:includeFontPadding="false"
+                                android:text="RFID"
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:typeface="sans" />
+
+                            <TextView
+                                android:id="@+id/txtView_es_rfid"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:includeFontPadding="false"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:typeface="sans" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="10dp" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:includeFontPadding="false"
+                                android:text="GENDER"
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:typeface="sans" />
+
+                            <TextView
+                                android:id="@+id/txtView_es_gender"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:includeFontPadding="false"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:typeface="sans" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="HEALTH INFORMATION"
+                        android:textColor="#ff8c00"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:typeface="sans" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp" >
+
+                        <ListView
+                            android:id="@+id/listViewHealthInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+                        </ListView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:includeFontPadding="false"
+                            android:text="USER ID13"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:typeface="sans" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:includeFontPadding="false"
+                            android:text="USER ID14"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:typeface="sans" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="#FFEBCD"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="WEEKLY STATUS OF EXERCISE"
+                        android:textColor="@color/blue"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:typeface="sans" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="GRPAH"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:typeface="sans" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="#FFC0CB"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="EXERCISE TIME"
+                        android:textColor="@color/blue"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:typeface="sans" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="GRAPH"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:typeface="sans" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

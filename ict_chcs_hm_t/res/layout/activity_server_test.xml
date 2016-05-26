@@ -1,0 +1,298 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/section_health_wellness_1138x543"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <!-- WELCOME -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="1dp"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:scrollbars="vertical"
+                android:text="Server Test"
+                android:textColor="#ff8c00"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <!-- RESULT -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/txtView_st_result"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#FFFFFF"
+                android:hint="\n  서버 테스트용 \n\n  사용자 아이디, 패스워드를 입력하면 해당 아이디에 대한 동작임 \n  사용자 아이디를 입력하지 않으면 get, del 동작은 모든 데이터에 대한 동작이며, set 동작은 랜덤 아이디를 생성함"
+                android:includeFontPadding="false"
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp" >
+
+            <EditText
+                android:id="@+id/edTxt_st_setuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Input user ID "
+                android:inputType="number"
+                android:textColor="#008000"
+                android:textSize="25dp"
+                android:typeface="sans" />
+
+            <EditText
+                android:id="@+id/edTxt_st_setpasswd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Input user PW "
+                android:inputType="number"
+                android:textColor="#008000"
+                android:textSize="25dp"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp" >
+
+            <Button
+                android:id="@+id/btn_st_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="clear"
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <Button
+                android:id="@+id/btn_st_getconnection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="getconnection"
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp" >
+
+            <Button
+                android:id="@+id/btn_st_getuser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="getuser "
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <Button
+                android:id="@+id/btn_st_setuser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="setuser"
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <Button
+                android:id="@+id/btn_st_deluser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="deluser "
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp" >
+
+            <Button
+                android:id="@+id/btn_st_getexresult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="getexresult "
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <Button
+                android:id="@+id/btn_st_setexresult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="setexresult"
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <Button
+                android:id="@+id/btn_st_delexresult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="delexresult "
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp" >
+
+            <Button
+                android:id="@+id/btn_st_getexgoalsetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="getexgoalsetting "
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <Button
+                android:id="@+id/btn_st_setexgoalsetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="setexgoalsetting"
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <Button
+                android:id="@+id/btn_st_delexgoalsetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="delexgoalsetting "
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp" >
+
+            <Button
+                android:id="@+id/btn_st_getexequipment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="getexequipment "
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <Button
+                android:id="@+id/btn_st_setexequipment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="setexequipment"
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <Button
+                android:id="@+id/btn_st_delexequipment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:layout_weight="1"
+                android:includeFontPadding="false"
+                android:text="delexequipment "
+                android:textColor="#008000"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

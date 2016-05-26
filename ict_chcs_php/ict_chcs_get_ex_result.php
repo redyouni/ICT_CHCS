@@ -29,7 +29,7 @@
     $sql = "select * from ex_result where `id` = '$id'";
   }
   else {
-    $sql = "select * from ex_result";
+    $sql = "select * from ex_result order by DESC";
   }
 
   // store the query execution result into the variable $result.

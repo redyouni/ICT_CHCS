@@ -1,0 +1,370 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sports_athletic_1280x1024"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <!-- NETWORK STATUS -->
+
+    <include
+        android:id="@+id/common_include_network_status"
+        layout="@layout/view_network_status" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <!-- TITLE -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:padding="10dp"
+                android:text="SIGN UP"
+                android:textColor="#ffffff"
+                android:textSize="35dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:layout_weight="6"
+            android:orientation="vertical" >
+
+            <!-- ID -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp" >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:includeFontPadding="false"
+                    android:paddingRight="30dp"
+                    android:text="USER ID"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+                <EditText
+                    android:id="@+id/edt_su_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="7"
+                    android:background="#FFFACD"
+                    android:ems="16"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:maxLength="16"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#00d2ff"
+                    android:textSize="20dp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <!-- PASSWORD -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp" >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:includeFontPadding="false"
+                    android:paddingRight="30dp"
+                    android:text="PASSWORD"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+                <EditText
+                    android:id="@+id/edt_su_pw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="7"
+                    android:background="#FFFACD"
+                    android:ems="16"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:maxLength="16"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#00d2ff"
+                    android:textSize="20dp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <!-- NAME -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp" >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:includeFontPadding="false"
+                    android:paddingRight="30dp"
+                    android:text="NAME"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+                <EditText
+                    android:id="@+id/edt_su_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="7"
+                    android:background="#FFFACD"
+                    android:ems="16"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:maxLength="16"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#00d2ff"
+                    android:textSize="20dp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <!-- AGE -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp" >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:includeFontPadding="false"
+                    android:paddingRight="30dp"
+                    android:text="AGE"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+                <EditText
+                    android:id="@+id/edt_su_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="7"
+                    android:background="#FFFACD"
+                    android:ems="16"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:maxLength="16"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#00d2ff"
+                    android:textSize="20dp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <!-- WEIGHT -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp" >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:includeFontPadding="false"
+                    android:paddingRight="30dp"
+                    android:text="WEIGHT"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+                <EditText
+                    android:id="@+id/edt_su_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="7"
+                    android:background="#FFFACD"
+                    android:ems="16"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:maxLength="16"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#00d2ff"
+                    android:textSize="20dp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <!-- RFID -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp" >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:includeFontPadding="false"
+                    android:paddingRight="30dp"
+                    android:text="RFID"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+                <EditText
+                    android:id="@+id/edt_su_rfid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="7"
+                    android:background="#FFFACD"
+                    android:ems="16"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:maxLength="16"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="#00d2ff"
+                    android:textSize="20dp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+            <!-- GENDER -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp" >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:includeFontPadding="false"
+                    android:paddingRight="30dp"
+                    android:text="GENDER"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:orientation="horizontal" >
+
+                    <RadioGroup
+                        android:id="@+id/radioGro_su_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:checkedButton="@+id/radio_su_male"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/radio_su_male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="MALE"
+                            android:textColor="#FFFFFF" />
+
+                        <RadioButton
+                            android:id="@+id/radio_su_female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="FEMALE"
+                            android:textColor="#FFFFFF" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- SIGN -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_su_create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:background="#00ff0000"
+                android:includeFontPadding="false"
+                android:text="CREATE"
+                android:textColor="#F0E68C"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <Button
+                android:id="@+id/btn_su_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:background="#00ff0000"
+                android:includeFontPadding="false"
+                android:text="CANCEL"
+                android:textColor="#228B22"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
