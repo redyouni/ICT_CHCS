@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@color/transparent" >
 
     <Button
         android:id="@+id/btn_network_status"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="top|left"
         android:background="@color/transparent"
         android:text=""
         android:textSize="25dp"
@@ -17,7 +18,7 @@
         android:id="@+id/txtView_network_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|right"
+        android:layout_gravity="top|left"
         android:layout_margin="10dp"
         android:includeFontPadding="false"
         android:textColor="#32CD32"

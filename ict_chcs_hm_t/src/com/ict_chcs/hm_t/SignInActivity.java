@@ -2,7 +2,6 @@ package com.ict_chcs.hm_t;
 
 import java.util.ArrayList;
 
-import com.ict_chcs.healthMonitor.R;
 import com.ict_chcs.hm_t.Adapter.Utility;
 
 import android.annotation.SuppressLint;

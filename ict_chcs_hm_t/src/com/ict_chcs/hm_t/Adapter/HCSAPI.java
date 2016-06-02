@@ -75,7 +75,7 @@ public class HCSAPI {
 
 		String result = null;
 		REQUEST = SERVER_URL + GET_CONNECTOIN;
-		retJson.append("REQUEST : " + REQUEST + "\n\nRESULT : ");
+		//retJson.append("REQUEST : " + REQUEST + "\n\nRESULT : ");
 
 		try {
 			result = new Query().execute(REQUEST).get();
@@ -257,7 +257,9 @@ public class HCSAPI {
 
 		//if (ArrayList.size() == 3) {
 			REQUEST = SERVER_URL + GET_EX_RESULT + "?" + "id=" + ArrayList.get(0) + "&ex_variety=" + ArrayList.get(1)
-					+ "&st_time=" + ArrayList.get(2);
+					+ "&st_time=" + ArrayList.get(2) + "&st_time2=" + ArrayList.get(3) + "&ex_calories=" + ArrayList.get(4)  
+					+ "&ex_distance=" + ArrayList.get(5) + "&ex_time=" + ArrayList.get(6) + "&sum=" + ArrayList.get(7)
+					+ "&limit=" + ArrayList.get(8) + "&desc=" + ArrayList.get(9);
 			//retJson.append("REQUEST : " + REQUEST + "\n\nRESULT : ");
 
 			String result = null;

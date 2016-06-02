@@ -2,7 +2,6 @@ package com.ict_chcs.hm_t;
 
 import java.util.ArrayList;
 
-import com.ict_chcs.healthMonitor.R;
 import com.ict_chcs.hm_t.Adapter.Utility;
 
 import android.annotation.SuppressLint;
@@ -16,8 +15,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignUpActivity extends Activity {

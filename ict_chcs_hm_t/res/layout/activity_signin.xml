@@ -5,12 +5,6 @@
     android:background="@drawable/girl_running_sea_beach_79930_1920x1080"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <!-- NETWORK STATUS -->
-
-    <include
-        android:id="@+id/common_include_network_status"
-        layout="@layout/view_network_status" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -88,8 +82,8 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:includeFontPadding="false"
                         android:gravity="right"
+                        android:includeFontPadding="false"
                         android:paddingRight="30dp"
                         android:text="User ID  :  "
                         android:textColor="#FFFFFF"
@@ -104,8 +98,8 @@
                         android:ems="10"
                         android:gravity="center"
                         android:includeFontPadding="false"
-                        android:singleLine="true"
                         android:maxLength="10"
+                        android:singleLine="true"
                         android:text="1"
                         android:textColor="#00d2ff"
                         android:textSize="20dp"
@@ -125,9 +119,9 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
+                        android:gravity="right"
                         android:includeFontPadding="false"
                         android:paddingRight="30dp"
-                        android:gravity="right"
                         android:text="Password  :  "
                         android:textColor="#FFFFFF"
                         android:textSize="20dp"
@@ -138,11 +132,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_weight="7"
-                        android:singleLine="true"
                         android:ems="10"
                         android:gravity="center"
                         android:includeFontPadding="false"
                         android:maxLength="10"
+                        android:singleLine="true"
                         android:text="1"
                         android:textColor="#00d2ff"
                         android:textSize="20dp"
@@ -187,5 +181,11 @@
                 android:typeface="sans" />
         </LinearLayout>
     </LinearLayout>
+
+    <!-- NETWORK STATUS -->
+
+    <include
+        android:id="@+id/common_include_network_status"
+        layout="@layout/view_network_status" />
 
 </FrameLayout>

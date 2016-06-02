@@ -2,13 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="${relativePackage}.${activityClass}" >
-
-    <!-- NETWORK STATUS -->
-
-    <include
-        android:id="@+id/common_include_network_status"
-        layout="@layout/view_network_status" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="4"
+            android:background="@color/white"
             android:orientation="horizontal" >
 
             <LinearLayout
@@ -38,7 +34,7 @@
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
                         android:text="USER INFORMATION"
-                        android:textColor="#ff8c00"
+                        android:textColor="@color/darkorange"
                         android:textSize="20dp"
                         android:textStyle="bold"
                         android:typeface="sans" />
@@ -53,8 +49,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center_horizontal"
-                        android:layout_weight="7" >
+                        android:layout_weight="7"
+                        android:gravity="left" >
 
                         <ImageView
                             android:id="@+id/img_es_face"
@@ -83,9 +79,8 @@
                                 android:layout_weight="5"
                                 android:includeFontPadding="false"
                                 android:text="USER ID"
-                                android:textColor="@color/black"
+                                android:textColor="@color/dimgray"
                                 android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:typeface="sans" />
 
                             <TextView
@@ -95,9 +90,8 @@
                                 android:layout_weight="5"
                                 android:includeFontPadding="false"
                                 android:text=""
-                                android:textColor="@color/black"
+                                android:textColor="@color/silver"
                                 android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:typeface="sans" />
                         </LinearLayout>
 
@@ -113,9 +107,8 @@
                                 android:layout_weight="5"
                                 android:includeFontPadding="false"
                                 android:text="PASSWORD"
-                                android:textColor="@color/black"
+                                android:textColor="@color/dimgray"
                                 android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:typeface="sans" />
 
                             <TextView
@@ -125,9 +118,8 @@
                                 android:layout_weight="5"
                                 android:includeFontPadding="false"
                                 android:text=""
-                                android:textColor="@color/black"
+                                android:textColor="@color/silver"
                                 android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:typeface="sans" />
                         </LinearLayout>
 
@@ -143,9 +135,8 @@
                                 android:layout_weight="5"
                                 android:includeFontPadding="false"
                                 android:text="NAME"
-                                android:textColor="@color/black"
+                                android:textColor="@color/dimgray"
                                 android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:typeface="sans" />
 
                             <TextView
@@ -155,9 +146,8 @@
                                 android:layout_weight="5"
                                 android:includeFontPadding="false"
                                 android:text=""
-                                android:textColor="@color/black"
+                                android:textColor="@color/silver"
                                 android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:typeface="sans" />
                         </LinearLayout>
 
@@ -173,9 +163,8 @@
                                 android:layout_weight="5"
                                 android:includeFontPadding="false"
                                 android:text="WEIGHT"
-                                android:textColor="@color/black"
+                                android:textColor="@color/dimgray"
                                 android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:typeface="sans" />
 
                             <TextView
@@ -185,9 +174,8 @@
                                 android:layout_weight="5"
                                 android:includeFontPadding="false"
                                 android:text=""
-                                android:textColor="@color/black"
+                                android:textColor="@color/silver"
                                 android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:typeface="sans" />
                         </LinearLayout>
 
@@ -203,9 +191,8 @@
                                 android:layout_weight="5"
                                 android:includeFontPadding="false"
                                 android:text="RFID"
-                                android:textColor="@color/black"
+                                android:textColor="@color/dimgray"
                                 android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:typeface="sans" />
 
                             <TextView
@@ -215,9 +202,8 @@
                                 android:layout_weight="5"
                                 android:includeFontPadding="false"
                                 android:text=""
-                                android:textColor="@color/black"
+                                android:textColor="@color/silver"
                                 android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:typeface="sans" />
                         </LinearLayout>
 
@@ -233,9 +219,8 @@
                                 android:layout_weight="5"
                                 android:includeFontPadding="false"
                                 android:text="GENDER"
-                                android:textColor="@color/black"
+                                android:textColor="@color/dimgray"
                                 android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:typeface="sans" />
 
                             <TextView
@@ -245,9 +230,8 @@
                                 android:layout_weight="5"
                                 android:includeFontPadding="false"
                                 android:text=""
-                                android:textColor="@color/black"
+                                android:textColor="@color/silver"
                                 android:textSize="20dp"
-                                android:textStyle="bold"
                                 android:typeface="sans" />
                         </LinearLayout>
                     </LinearLayout>
@@ -263,17 +247,57 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="9" >
+                    android:layout_weight="9"
+                    android:orientation="horizontal" >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:text="HEALTH INFORMATION"
-                        android:textColor="#ff8c00"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:typeface="sans" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="HEALTH INFORMATION OF MONTHLY"
+                            android:textColor="@color/darkorange"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:typeface="sans" />
+
+                        <TextView
+                            android:id="@+id/txtView_hs_health_list_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:includeFontPadding="false"
+                            android:text=""
+                            android:textColor="@color/silver"
+                            android:textSize="15dp"
+                            android:typeface="sans" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6"
+                        android:gravity="right" >
+
+                        <ImageView
+                            android:id="@+id/img_es_left_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:src="@drawable/button_monthly_left" />
+
+                        <ImageView
+                            android:id="@+id/img_es_right_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/button_monthly_right"
+                            android:visibility="invisible" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -284,44 +308,26 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="10dp" >
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal" >
 
                         <ListView
                             android:id="@+id/listViewHealthInfo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent" >
                         </ListView>
-                    </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="10dp" >
+                        <include
+                            android:id="@+id/common_include_health_info_treadmill"
+                            layout="@layout/view_health_info_treadmill"
+                            android:visibility="gone" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="5"
-                            android:includeFontPadding="false"
-                            android:text="USER ID13"
-                            android:textColor="#FFFFFF"
-                            android:textSize="20dp"
-                            android:textStyle="bold"
-                            android:typeface="sans" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="5"
-                            android:includeFontPadding="false"
-                            android:text="USER ID14"
-                            android:textColor="#FFFFFF"
-                            android:textSize="20dp"
-                            android:textStyle="bold"
-                            android:typeface="sans" />
+                        <include
+                            android:id="@+id/common_include_health_info_bike"
+                            layout="@layout/view_health_info_bike"
+                            android:visibility="gone" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -336,83 +342,727 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:background="#FFEBCD"
+                android:layout_weight="6"
                 android:orientation="vertical" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="9" >
+                    android:layout_weight="9"
+                    android:orientation="horizontal" >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:text="WEEKLY STATUS OF EXERCISE"
-                        android:textColor="@color/blue"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:typeface="sans" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#FFEBCD" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="SUMMARY HEALTH INFORMATION OF TOTAL"
+                            android:textColor="@color/blue"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:typeface="sans" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="9"
+                        android:gravity="right" >
+
+                        <ImageView
+                            android:id="@+id/img_es_health_total_graph"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/button_go_graph" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" >
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:text="GRPAH"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:typeface="sans" />
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="left"
+                            android:text="BEGAN TIME"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/dimgray"
+                            android:textSize="17dp" />
+
+                        <TextView
+                            android:id="@+id/txtView_hs_total_stime"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="left"
+                            android:text=" "
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/silver"
+                            android:textSize="17dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="left"
+                            android:text="FINISHED TIME"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/dimgray"
+                            android:textSize="17dp" />
+
+                        <TextView
+                            android:id="@+id/txtView_hs_total_etime"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="left"
+                            android:text=" "
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/silver"
+                            android:textSize="17dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="left"
+                            android:text="CALORIES"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/dimgray"
+                            android:textSize="17dp" />
+
+                        <TextView
+                            android:id="@+id/txtView_hs_total_calories"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="left"
+                            android:text=" "
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/silver"
+                            android:textSize="17dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="left"
+                            android:text="TIME"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/dimgray"
+                            android:textSize="17dp" />
+
+                        <TextView
+                            android:id="@+id/txtView_hs_total_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="left"
+                            android:text=" "
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/silver"
+                            android:textSize="17dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="left"
+                            android:text="DISTANCE"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/dimgray"
+                            android:textSize="17dp" />
+
+                        <TextView
+                            android:id="@+id/txtView_hs_total_distance"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="left"
+                            android:text=" "
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/silver"
+                            android:textSize="17dp" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:background="#FFC0CB"
+                android:layout_weight="4"
                 android:orientation="vertical" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="9" >
+                    android:layout_weight="9"
+                    android:orientation="horizontal" >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:text="EXERCISE TIME"
-                        android:textColor="@color/blue"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:typeface="sans" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#FFC0CB"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="SUMMARY HEALTH INFORMATION OF"
+                            android:textColor="@color/blue"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:typeface="sans" />
+
+                        <Button
+                            android:id="@+id/btn_es_health_monthly"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_monthly"
+                            android:includeFontPadding="false"
+                            android:text=" MONTHLY"
+                            android:textColor="@color/red"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:typeface="sans" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text=" | "
+                            android:textColor="@color/blue"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:typeface="sans" />
+
+                        <Button
+                            android:id="@+id/btn_es_health_weekly"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_weekly"
+                            android:includeFontPadding="false"
+                            android:text="WEEKLY"
+                            android:textColor="@color/green"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:typeface="sans" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text=" | "
+                            android:textColor="@color/blue"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:typeface="sans" />
+
+                        <Button
+                            android:id="@+id/btn_es_health_daily"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_daily"
+                            android:includeFontPadding="false"
+                            android:text="DAILY"
+                            android:textColor="@color/yellow"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:typeface="sans" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="9"
+                        android:gravity="right" >
+
+                        <ImageView
+                            android:id="@+id/img_es_health_monthly_graph"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/button_go_graph" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" >
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:text="GRAPH"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:typeface="sans" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="9"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/img_es_search_bike"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/bike1_64x64" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical" >
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="horizontal" >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="7"
+                                        android:gravity="left"
+                                        android:text="BEGAN TIME"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/dimgray"
+                                        android:textSize="17dp" />
+
+                                    <TextView
+                                        android:id="@+id/txtView_hs_search_stime_bike"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="3"
+                                        android:gravity="left"
+                                        android:text=" "
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/silver"
+                                        android:textSize="17dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="horizontal" >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="7"
+                                        android:gravity="left"
+                                        android:text="FINISHED TIME"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/dimgray"
+                                        android:textSize="17dp" />
+
+                                    <TextView
+                                        android:id="@+id/txtView_hs_search_etime_bike"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="3"
+                                        android:gravity="left"
+                                        android:text=" "
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/silver"
+                                        android:textSize="17dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="10dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal" >
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="horizontal" >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:gravity="left"
+                                        android:text="CALORIES"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/dimgray"
+                                        android:textSize="17dp" />
+
+                                    <TextView
+                                        android:id="@+id/txtView_hs_search_calories_bike"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:gravity="left"
+                                        android:text=" "
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/silver"
+                                        android:textSize="17dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="horizontal" >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:gravity="left"
+                                        android:text="TIME"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/dimgray"
+                                        android:textSize="17dp" />
+
+                                    <TextView
+                                        android:id="@+id/txtView_hs_search_time_bike"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:gravity="left"
+                                        android:text=" "
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/silver"
+                                        android:textSize="17dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="horizontal" >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:gravity="left"
+                                        android:text="DISTANCE"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/dimgray"
+                                        android:textSize="17dp" />
+
+                                    <TextView
+                                        android:id="@+id/txtView_hs_search_distance_bike"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:gravity="left"
+                                        android:text=" "
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/silver"
+                                        android:textSize="17dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="9"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/img_es_search_treadmill"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/treadmill_64x64" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical" >
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="horizontal" >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="7"
+                                        android:gravity="left"
+                                        android:text="BEGAN TIME"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/dimgray"
+                                        android:textSize="17dp" />
+
+                                    <TextView
+                                        android:id="@+id/txtView_hs_search_stime_treadmill"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="3"
+                                        android:gravity="left"
+                                        android:text=" "
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/silver"
+                                        android:textSize="17dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="horizontal" >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="7"
+                                        android:gravity="left"
+                                        android:text="FINISHED TIME"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/dimgray"
+                                        android:textSize="17dp" />
+
+                                    <TextView
+                                        android:id="@+id/txtView_hs_search_etime_treadmill"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="3"
+                                        android:gravity="left"
+                                        android:text=" "
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/silver"
+                                        android:textSize="17dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="10dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal" >
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="horizontal" >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:gravity="left"
+                                        android:text="CALORIES"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/dimgray"
+                                        android:textSize="17dp" />
+
+                                    <TextView
+                                        android:id="@+id/txtView_hs_search_calories_treadmill"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:gravity="left"
+                                        android:text=" "
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/silver"
+                                        android:textSize="17dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="horizontal" >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:gravity="left"
+                                        android:text="TIME"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/dimgray"
+                                        android:textSize="17dp" />
+
+                                    <TextView
+                                        android:id="@+id/txtView_hs_search_time_treadmill"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:gravity="left"
+                                        android:text=" "
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/silver"
+                                        android:textSize="17dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="horizontal" >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:gravity="left"
+                                        android:text="DISTANCE"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/dimgray"
+                                        android:textSize="17dp" />
+
+                                    <TextView
+                                        android:id="@+id/txtView_hs_search_distance_treadmill"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:gravity="left"
+                                        android:text=" "
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/silver"
+                                        android:textSize="17dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
+    <!-- NETWORK STATUS -->
+
+    <include
+        android:id="@+id/common_include_network_status"
+        layout="@layout/view_network_status" />
+
+    <!-- Loading -->
+
+    <include
+        android:id="@+id/common_include_loading_ani"
+        layout="@layout/view_loading_ani"
+        android:visibility="gone" />
+    
+    <!-- Health Graph -->
+
+    <include
+        android:id="@+id/common_include_view_health_graph"
+        layout="@layout/view_health_graph"
+        android:visibility="gone" />
+    
 </FrameLayout>
