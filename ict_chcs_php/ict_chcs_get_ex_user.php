@@ -53,6 +53,7 @@
       mysql_data_seek($result, $i);
 
       $row = mysql_fetch_array($result);
+      
       echo "{\"id\":\"$row[id]\", \"password\":\"$row[password]\", \"name\":\"$row[name]\", \"gender\":\"$row[gender]\", \"age\":\"$row[age]\", \"weight\":\"$row[weight]\", \"rfid\":\"$row[rfid]\"}";
 
       // Put .(comma) just before the last record. That's because you can distinguish data. 

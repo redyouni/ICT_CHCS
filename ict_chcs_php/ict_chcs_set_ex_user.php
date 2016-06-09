@@ -26,6 +26,8 @@
 		// store the query execution result into the variable $result.
 		$result = mysql_query($sql, $connect);
 
+		mysql_query("SET NAMES UTF8");
+
 		//Save the the number of the records returned.
 		$total_record = mysql_num_rows($result);
 
