@@ -40,7 +40,6 @@ public class ServerTestActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_server_test);
 		
-		
 		mRand = new Random();
 		((TextView) findViewById(R.id.txtView_st_result)).setMovementMethod(new ScrollingMovementMethod());
 
@@ -131,14 +130,14 @@ public class ServerTestActivity extends Activity {
 							mArrayList.add(((EditText) findViewById(R.id.edTxt_st_setuser)).getText().toString());
 							mArrayList.add(((EditText) findViewById(R.id.edTxt_st_setpasswd)).getText().toString());
 						} else {
-							mArrayList.add(getRandom(1000, 1)); // id
-							mArrayList.add(getRandom(1000, 1)); // password
+							mArrayList.add(getRandom(2, 1)); // id
+							mArrayList.add(getRandom(2, 1)); // password
 						}
-						mArrayList.add(getRandom(1000, 1)); // name
+						mArrayList.add(getRandom(2, 1)); // name
 
 						mArrayList.add(((Integer.parseInt(getRandom(1000, 1)) % 2) != 0 ? "MALE" : "FEMALE")); // gender
-						mArrayList.add(getRandom(1000, 1)); // age
-						mArrayList.add(getRandom(1000, 1)); // weight
+						mArrayList.add(getRandom(100, 1)); // age
+						mArrayList.add(getRandom(100, 1)); // weight
 						mArrayList.add(getRandom(1000, 1)); // rfid
 
 						Application.getHCSAPI().SetExUser(mArrayList, mRetJson);
@@ -223,7 +222,7 @@ public class ServerTestActivity extends Activity {
 						if (((EditText) findViewById(R.id.edTxt_st_setuser)).getText().length() > 0) {
 							mArrayList.add(((EditText) findViewById(R.id.edTxt_st_setuser)).getText().toString());
 						} else {
-							mArrayList.add(getRandom(1000, 1)); // id
+							mArrayList.add(getRandom(2, 1)); // id
 						}
 						mArrayList.add(((Integer.parseInt(getRandom(1000, 1)) % 2) != 0 ? "BIKE" : "TREADMILL")); // gender
 
@@ -247,15 +246,15 @@ public class ServerTestActivity extends Activity {
 						String ex_time = String.format("%02d:%02d", min, sec);
 						mArrayList.add(ex_time); // ex_time
 
-						mArrayList.add(getRandom(1000, 1)); // ex_heartplus
-						mArrayList.add(getRandom(1000, 1)); // ex_carories
-						mArrayList.add(getRandom(1000, 1)); // ex_distance
-						mArrayList.add(getRandom(1000, 1)); // ex_speed
-						mArrayList.add(getRandom(1000, 1)); // ex_incline
-						mArrayList.add(getRandom(1000, 1)); // ex_level
-						mArrayList.add(getRandom(1000, 1)); // ex_rpm
-						mArrayList.add(getRandom(1000, 1)); // ex_watts
-						mArrayList.add(getRandom(1000, 1)); // ex_mets
+						mArrayList.add(getRandom(100, 1)); // ex_heartplus
+						mArrayList.add(getRandom(50, 1)); // ex_carories
+						mArrayList.add(getRandom(50, 1)); // ex_distance
+						mArrayList.add(getRandom(10, 1)); // ex_speed
+						mArrayList.add(getRandom(10, 1)); // ex_incline
+						mArrayList.add(getRandom(10, 1)); // ex_level
+						mArrayList.add(getRandom(10, 1)); // ex_rpm
+						mArrayList.add(getRandom(10, 1)); // ex_watts
+						mArrayList.add(getRandom(10, 1)); // ex_mets
 						Application.getHCSAPI().SetExResult(mArrayList, mRetJson);
 
 						((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
@@ -339,11 +338,11 @@ public class ServerTestActivity extends Activity {
 						} else {
 							mArrayList.add(getRandom(1000, 1)); // id
 						}
-						mArrayList.add(getRandom(1000, 1)); // ex_variety
-						mArrayList.add(getRandom(1000, 1)); // ex_heartplus
-						mArrayList.add(getRandom(1000, 1)); // ex_calories
-						mArrayList.add(getRandom(1000, 1)); // ex_distance
-						mArrayList.add(getRandom(1000, 1)); // ex_speed
+						mArrayList.add(getRandom(2, 1)); // ex_variety
+						mArrayList.add(getRandom(100, 1)); // ex_heartplus
+						mArrayList.add(getRandom(50, 1)); // ex_calories
+						mArrayList.add(getRandom(50, 1)); // ex_distance
+						mArrayList.add(getRandom(10, 1)); // ex_speed
 						Application.getHCSAPI().SetExGoalSetting(mArrayList, mRetJson);
 
 						((TextView) findViewById(R.id.txtView_st_result)).setText(mRetJson);
@@ -417,8 +416,8 @@ public class ServerTestActivity extends Activity {
 						StringBuilder mRetJson = new StringBuilder();
 
 						mArrayList = new ArrayList<String>();
-						mArrayList.add(getRandom(1000, 1));
-						mArrayList.add(getRandom(1000, 1));
+						mArrayList.add(getRandom(10, 1));
+						mArrayList.add(getRandom(10, 1));
 
 						Application.getHCSAPI().SetExEquipment(mArrayList, mRetJson);
 

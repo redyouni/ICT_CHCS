@@ -13,6 +13,7 @@
   $sum = $_GET['sum'];
   $limit = $_GET['limit'];
   $desc = $_GET['desc'];
+  $graph = $_GET['graph'];
 
   $ex_calories = $_GET['ex_calories'];
   $ex_distance = $_GET['ex_distance'];
@@ -63,8 +64,51 @@
         }
       }
 
-      //echo $sql ;
-      //echo $name ;
+      echo $sql ;
+      echo $name ;
+
+      // store the query execution result into the variable $result.
+      $result = mysql_query($sql, $connect);
+
+      //Save the the number of the records returned.
+      $total_record = mysql_num_rows($result);
+
+      //echo "total_record = $total_record";
+      if(!$total_record)  { 
+        echo "{\"status\":\"NOK\"}";
+      }
+      else  {
+        echo "{\"status\":\"OK\",\"num_results\":\"$total_record\",\"results\":[";
+
+        //Make the format of JSONArray from each record returned.
+        for ($i=0; $i < $total_record; $i++)  { 
+
+          //move the pointer which will bring the record
+          mysql_data_seek($result, $i);
+
+          $row = mysql_fetch_array($result);
+
+          //echo "{\"$name\":\"$row\"}";
+
+          echo "{\"$name\":\"$row[$name]\"}";
+
+          // Put .(comma) just before the last record. That's because you can distinguish data. 
+          if($i<$total_record-1){
+            echo ",";
+          }
+        }
+
+        echo "]}";
+      }
+    }
+    else if($graph) {
+      $sql = "SELECT SUM(`ex_calories`), SUM(`ex_heartplus`), SUM(`ex_time`), SUM(`ex_distance`) FROM `ex_result` WHERE `id` = '$id' AND  `ex_variety` = 'TREADMILL'  AND `st_time` >= '$st_time' AND `st_time` <= '$st_time2'";
+      //$sql += " UNION ";
+      //$sql += " SELECT SUM(`ex_calories`), SUM(`ex_heartplus`), SUM(`ex_time`), SUM(`ex_distance`) FROM `ex_result` WHERE `id` = '$id' AND `ex_variety` = 'BIKE' AND `st_time` >= '$st_time' AND `st_time` <= '$st_time2'";
+      $name = "graph";
+
+      echo $sql ;
+      echo $name ;
 
       // store the query execution result into the variable $result.
       $result = mysql_query($sql, $connect);

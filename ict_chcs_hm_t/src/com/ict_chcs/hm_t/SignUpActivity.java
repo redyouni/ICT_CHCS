@@ -2,6 +2,10 @@ package com.ict_chcs.hm_t;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.ict_chcs.hm_t.Adapter.Utility;
 
 import android.annotation.SuppressLint;
@@ -10,14 +14,13 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SignUpActivity extends Activity {
 
@@ -40,7 +43,7 @@ public class SignUpActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_signup);
 		Application.getHCSAPI().setContext(this);
-		
+
 		if (Utility.getBuildMode(this) > 0) {
 			// DEBUG CODE
 			new Thread(new Runnable() {
@@ -53,31 +56,38 @@ public class SignUpActivity extends Activity {
 				}
 			}).start();
 		}
-		
-		intent = getIntent();
-		if (intent != null) {
-			UserID = intent.getStringExtra("UserID");
-			Password = intent.getStringExtra("Password");
-			((EditText) findViewById(R.id.edt_su_id)).setText(UserID);
-			((EditText) findViewById(R.id.edt_su_pw)).setText(Password);
-		}
 
-		if (((EditText) findViewById(R.id.edt_su_id)).getText().toString().length() <= 0) {
-			((EditText) findViewById(R.id.edt_su_id)).requestFocus();
-		}
-		else if (((EditText) findViewById(R.id.edt_su_pw)).getText().toString().length() <= 0) {
-			((EditText) findViewById(R.id.edt_su_pw)).requestFocus();
-		}
-		else {
-			((EditText) findViewById(R.id.edt_su_name)).requestFocus();
-		}
-		
 		findViewById(R.id.btn_su_create).setOnClickListener(new View.OnClickListener() {
 
 			@SuppressWarnings("static-access")
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+
+				if (((EditText) findViewById(R.id.edt_su_id)).getText().toString().equalsIgnoreCase("")) {
+					Utility.msgbox(SignUpActivity.this, "Please insert a user id.");
+					return;
+				}
+				if (((EditText) findViewById(R.id.edt_su_pw)).getText().toString().equalsIgnoreCase("")) {
+					Utility.msgbox(SignUpActivity.this, "Please insert a password.");
+					return;
+				}
+				if (((EditText) findViewById(R.id.edt_su_name)).getText().toString().equalsIgnoreCase("")) {
+					Utility.msgbox(SignUpActivity.this, "Please insert a name.");
+					return;
+				}
+				if (((EditText) findViewById(R.id.edt_su_age)).getText().toString().equalsIgnoreCase("")) {
+					Utility.msgbox(SignUpActivity.this, "Please insert a age.");
+					return;
+				}
+				if (((EditText) findViewById(R.id.edt_su_weight)).getText().toString().equalsIgnoreCase("")) {
+					Utility.msgbox(SignUpActivity.this, "Please insert a weight.");
+					return;
+				}
+				if (((EditText) findViewById(R.id.edt_su_rfid)).getText().toString().equalsIgnoreCase("")) {
+					Utility.msgbox(SignUpActivity.this, "Please insert a RFID.");
+					return;
+				}
 
 				ArrayList<String> mArrayList;
 				StringBuilder mRetJson = new StringBuilder();
@@ -94,13 +104,22 @@ public class SignUpActivity extends Activity {
 
 				if (Application.getHCSAPI().SetExUser(mArrayList, mRetJson) == true) {
 
-					// Login
-					intent = new Intent(SignUpActivity.this, ExStatusActivity.class);
-					startActivity(intent);
-					finish();
-				} else {
-					msgbox("Network or Server disconnected !!");
+					Utility.msgbox(SignUpActivity.this, "User Created. Please wait ...");
+
+					new Handler() {
+						public void handleMessage(Message msg) {
+							// Login
+							Intent intent = new Intent(SignUpActivity.this, ExStatusActivity.class);
+							intent.putExtra("UserID", ((EditText) findViewById(R.id.edt_su_id)).getText().toString());
+							intent.putExtra("Password", ((EditText) findViewById(R.id.edt_su_pw)).getText().toString());
+							startActivity(intent);
+							finish();
+						}
+					}.sendEmptyMessageDelayed(0, 1000);
+					return;
 				}
+
+				Utility.msgbox(SignUpActivity.this, "Network or Server disconnected !!");
 			}
 		});
 
@@ -109,18 +128,6 @@ public class SignUpActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-
-				/*
-				 * ((EditText) findViewById(R.id.edt_su_id)).setText("");
-				 * ((EditText) findViewById(R.id.edt_su_pw)).setText("");
-				 * ((EditText) findViewById(R.id.edt_su_name)).setText("");
-				 * ((EditText) findViewById(R.id.edt_su_age)).setText("");
-				 * ((RadioGroup)
-				 * findViewById(R.id.radioGro_su_gender)).check(R.id.
-				 * radio_su_male); ((EditText)
-				 * findViewById(R.id.edt_su_weight)).setText("");
-				 * msgbox("Canceled.");
-				 */
 
 				Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
 				startActivity(intent);
@@ -144,16 +151,87 @@ public class SignUpActivity extends Activity {
 			}
 		});
 
-	}
+		intent = getIntent();
+		if (intent != null) {
+			UserID = intent.getStringExtra("UserID");
+			Password = intent.getStringExtra("Password");
+		}
 
-	private void msgbox(String msg) {
-		final String output = msg;
-		handler.post(new Runnable() {
-			public void run() {
-				Log.d(TAG, output);
-				Toast.makeText(getApplicationContext(), output, Toast.LENGTH_LONG).show();
+		new Handler() {
+			public void handleMessage(Message msg) {
+				// Login
+				try {
+
+					if (!(UserID.equalsIgnoreCase("") || Password.equalsIgnoreCase(""))) {
+						ArrayList<String> mArrayList;
+						StringBuilder mRetJson = new StringBuilder();
+
+						mArrayList = new ArrayList<String>();
+						mArrayList.add(UserID);
+						mArrayList.add(Password);
+
+						if (Application.getHCSAPI().GetExUser(mArrayList, mRetJson) == true) {
+
+							JSONObject root;
+							root = new JSONObject(mRetJson.toString());
+							JSONArray results = root.getJSONArray("results");
+
+							if (results.length() > 0) {
+								JSONObject resultInfo = results.getJSONObject(0);
+
+								((EditText) findViewById(R.id.edt_su_id)).setText(resultInfo.getString("id"));
+								((EditText) findViewById(R.id.edt_su_pw)).setText(resultInfo.getString("password"));
+								((EditText) findViewById(R.id.edt_su_name)).setText(resultInfo.getString("name"));
+								((EditText) findViewById(R.id.edt_su_age)).setText(resultInfo.getString("age"));
+								((EditText) findViewById(R.id.edt_su_weight)).setText(resultInfo.getString("weight"));
+								((EditText) findViewById(R.id.edt_su_rfid)).setText(resultInfo.getString("rfid"));
+								if (resultInfo.getString("gender").equalsIgnoreCase("MALE")) {
+									((RadioGroup) findViewById(R.id.radioGro_su_gender)).check(R.id.radio_su_male);
+								} else {
+									((RadioGroup) findViewById(R.id.radioGro_su_gender)).check(R.id.radio_su_female);
+								}
+								return;
+							}
+						}
+
+						//Utility.msgbox(SignUpActivity.this, "Network or Server disconnected !!");
+					}
+
+					((EditText) findViewById(R.id.edt_su_id)).setText(UserID);
+					((EditText) findViewById(R.id.edt_su_pw)).setText(Password);
+
+					if (((EditText) findViewById(R.id.edt_su_id)).getText().toString().length() <= 0) {
+						((EditText) findViewById(R.id.edt_su_id)).requestFocus();
+					} else if (((EditText) findViewById(R.id.edt_su_pw)).getText().toString().length() <= 0) {
+						((EditText) findViewById(R.id.edt_su_pw)).requestFocus();
+					} else if (((EditText) findViewById(R.id.edt_su_name)).getText().toString().length() <= 0) {
+						((EditText) findViewById(R.id.edt_su_name)).requestFocus();
+					} else if (((EditText) findViewById(R.id.edt_su_age)).getText().toString().length() <= 0) {
+						((EditText) findViewById(R.id.edt_su_age)).requestFocus();
+					} else if (((EditText) findViewById(R.id.edt_su_weight)).getText().toString().length() <= 0) {
+						((EditText) findViewById(R.id.edt_su_weight)).requestFocus();
+					} else if (((EditText) findViewById(R.id.edt_su_rfid)).getText().toString().length() <= 0) {
+						((EditText) findViewById(R.id.edt_su_rfid)).requestFocus();
+					}
+
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		});
+		}.sendEmptyMessage(0);
 	}
 
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+
+		/*
+		 * if (findViewById(R.id.common_include_view_health_info_graph).
+		 * getVisibility() == View.VISIBLE) {
+		 * findViewById(R.id.common_include_view_health_info_graph).
+		 * setVisibility(View.GONE); return; }
+		 */
+		super.onBackPressed();
+	}
 }

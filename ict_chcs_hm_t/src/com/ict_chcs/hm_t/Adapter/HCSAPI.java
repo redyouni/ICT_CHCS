@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -75,7 +76,7 @@ public class HCSAPI {
 
 		String result = null;
 		REQUEST = SERVER_URL + GET_CONNECTOIN;
-		//retJson.append("REQUEST : " + REQUEST + "\n\nRESULT : ");
+		// retJson.append("REQUEST : " + REQUEST + "\n\nRESULT : ");
 
 		try {
 			result = new Query().execute(REQUEST).get();
@@ -111,7 +112,7 @@ public class HCSAPI {
 
 		String result = null;
 		REQUEST = SERVER_URL + GET_EX_USER + "?" + "id=" + ArrayList.get(0) + "&" + "password=" + ArrayList.get(1);
-		//retJson.append("REQUEST : " + REQUEST + "\n\nRESULT : ");
+		// retJson.append("REQUEST : " + REQUEST + "\n\nRESULT : ");
 
 		try {
 			result = new Query().execute(REQUEST).get();
@@ -146,7 +147,7 @@ public class HCSAPI {
 
 		if (ArrayList.size() == 7) {
 			REQUEST = SERVER_URL + SET_EX_USER + "?" + "id=" + ArrayList.get(0) + "&" + "password=" + ArrayList.get(1)
-					+ "&name=" + ArrayList.get(2) + "&gender=" + ArrayList.get(3) + "&age=" + ArrayList.get(4)
+					+ "&name=" + URLEncoder.encode(ArrayList.get(2)) + "&gender=" + ArrayList.get(3) + "&age=" + ArrayList.get(4)
 					+ "&weight=" + ArrayList.get(5) + "&rfid=" + ArrayList.get(6);
 			retJson.append("REQUEST : " + REQUEST + "\n\nRESULT : ");
 
@@ -255,39 +256,39 @@ public class HCSAPI {
 
 	public static Boolean GetExResult(ArrayList<String> ArrayList, StringBuilder retJson) {
 
-		//if (ArrayList.size() == 3) {
-			REQUEST = SERVER_URL + GET_EX_RESULT + "?" + "id=" + ArrayList.get(0) + "&ex_variety=" + ArrayList.get(1)
-					+ "&st_time=" + ArrayList.get(2) + "&st_time2=" + ArrayList.get(3) + "&ex_calories=" + ArrayList.get(4)  
-					+ "&ex_distance=" + ArrayList.get(5) + "&ex_time=" + ArrayList.get(6) + "&sum=" + ArrayList.get(7)
-					+ "&limit=" + ArrayList.get(8) + "&desc=" + ArrayList.get(9);
-			//retJson.append("REQUEST : " + REQUEST + "\n\nRESULT : ");
+		// if (ArrayList.size() == 3) {
+		REQUEST = SERVER_URL + GET_EX_RESULT + "?" + "id=" + ArrayList.get(0) + "&ex_variety=" + ArrayList.get(1)
+				+ "&st_time=" + ArrayList.get(2) + "&st_time2=" + ArrayList.get(3) + "&ex_calories=" + ArrayList.get(4)
+				+ "&ex_distance=" + ArrayList.get(5) + "&ex_time=" + ArrayList.get(6) + "&sum=" + ArrayList.get(7)
+				+ "&limit=" + ArrayList.get(8) + "&desc=" + ArrayList.get(9) + "&graph=" + ArrayList.get(10);
+		// retJson.append("REQUEST : " + REQUEST + "\n\nRESULT : ");
 
-			String result = null;
-			try {
-				result = new Query().execute(REQUEST).get();
-				if (retJson != null)
-					retJson.append(result);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (ExecutionException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+		String result = null;
+		try {
+			result = new Query().execute(REQUEST).get();
+			if (retJson != null)
+				retJson.append(result);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+
+			JSONObject root = new JSONObject(result);
+			String num_results = root.getString("status");
+
+			if (num_results.equalsIgnoreCase("OK")) {
+				return true;
 			}
-
-			try {
-
-				JSONObject root = new JSONObject(result);
-				String num_results = root.getString("status");
-
-				if (num_results.equalsIgnoreCase("OK")) {
-					return true;
-				}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		//}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// }
 
 		return false;
 	}

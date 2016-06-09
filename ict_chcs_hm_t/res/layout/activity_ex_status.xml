@@ -253,7 +253,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="4" >
+                        android:layout_weight="3" >
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -280,7 +280,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="6"
+                        android:layout_weight="7"
                         android:gravity="right" >
 
                         <ImageView
@@ -576,7 +576,7 @@
                             android:background="@drawable/button_monthly"
                             android:includeFontPadding="false"
                             android:text=" MONTHLY"
-                            android:textColor="@color/red"
+                            android:textColor="@color/silver"
                             android:textSize="20dp"
                             android:textStyle="bold"
                             android:typeface="sans" />
@@ -598,7 +598,7 @@
                             android:background="@drawable/button_weekly"
                             android:includeFontPadding="false"
                             android:text="WEEKLY"
-                            android:textColor="@color/green"
+                            android:textColor="@color/silver"
                             android:textSize="20dp"
                             android:textStyle="bold"
                             android:typeface="sans" />
@@ -620,7 +620,7 @@
                             android:background="@drawable/button_daily"
                             android:includeFontPadding="false"
                             android:text="DAILY"
-                            android:textColor="@color/yellow"
+                            android:textColor="@color/silver"
                             android:textSize="20dp"
                             android:textStyle="bold"
                             android:typeface="sans" />
@@ -631,13 +631,15 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
                         android:layout_weight="9"
+                        android:background="#FFC0CB"
                         android:gravity="right" >
 
                         <ImageView
                             android:id="@+id/img_es_health_monthly_graph"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/button_go_graph" />
+                            android:src="@drawable/button_go_graph"
+                            android:visibility="invisible" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -1057,12 +1059,12 @@
         android:id="@+id/common_include_loading_ani"
         layout="@layout/view_loading_ani"
         android:visibility="gone" />
-    
+
     <!-- Health Graph -->
 
     <include
-        android:id="@+id/common_include_view_health_graph"
-        layout="@layout/view_health_graph"
+        android:id="@+id/common_include_view_health_info_graph"
+        layout="@layout/view_health_info_graph"
         android:visibility="gone" />
-    
+
 </FrameLayout>

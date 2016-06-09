@@ -1,12 +1,16 @@
 package com.ict_chcs.hm_t;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.ict_chcs.hm_t.Adapter.CustomAniDrawable;
+import com.ict_chcs.hm_t.Adapter.Graph;
 import com.ict_chcs.hm_t.Adapter.Utility;
 
 import android.annotation.SuppressLint;
@@ -30,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+@SuppressLint("ResourceAsColor")
 public class ExStatusActivity extends Activity {
 
 	public static final String TAG = "ExStatusActivity";
@@ -37,6 +42,8 @@ public class ExStatusActivity extends Activity {
 	String mCurTime = null;
 	String UserID = null;
 	String Password = null;
+	String mStartTime = null;
+	String mEndTime = null;
 	Intent intent = null;
 	Handler handler = new Handler();
 	public ArrayList<healthInfoList> ArrayHealthInfo = null;
@@ -45,6 +52,7 @@ public class ExStatusActivity extends Activity {
 	public HealthInfoAdapter mHealthInfoAdapter = null;
 	public UiHandler mUiHandler = null;
 	public CustomAniDrawable mAni1 = null;
+	public Graph mGraph = null;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -57,6 +65,7 @@ public class ExStatusActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ex_status);
 		Application.getHCSAPI().setContext(this);
+		mGraph = new Graph();
 
 		if (Utility.getBuildMode(this) > 0) {
 			// DEBUG CODE
@@ -138,6 +147,7 @@ public class ExStatusActivity extends Activity {
 							mArrayList.add("0"); // sum
 							mArrayList.add("0"); // limit
 							mArrayList.add("0"); // desc
+							mArrayList.add("0"); // graph
 
 							if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
 
@@ -216,6 +226,17 @@ public class ExStatusActivity extends Activity {
 											((TextView) findViewById(R.id.txtView_hib_Mets))
 													.setText(resultInfo.getString("ex_mets"));
 
+										} else {
+											((TextView) findViewById(R.id.txtView_hib_EndTime)).setText("");
+											((TextView) findViewById(R.id.txtView_hib_Running)).setText("");
+
+											((TextView) findViewById(R.id.txtView_hib_Calories)).setText("");
+											((TextView) findViewById(R.id.txtView_hib_heartplus)).setText("");
+											((TextView) findViewById(R.id.txtView_hib_Speed)).setText("");
+
+											((TextView) findViewById(R.id.txtView_hib_Level)).setText("");
+											((TextView) findViewById(R.id.txtView_hib_Rpm)).setText("");
+											((TextView) findViewById(R.id.txtView_hib_Mets)).setText("");
 										}
 									}
 								} catch (JSONException e) {
@@ -278,6 +299,10 @@ public class ExStatusActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
+				((TextView) findViewById(R.id.btn_es_health_monthly)).setSelected(true);
+				((TextView) findViewById(R.id.btn_es_health_weekly)).setSelected(false);
+				((TextView) findViewById(R.id.btn_es_health_daily)).setSelected(false);
+
 				mUiHandler.sendEmptyMessage(mUiHandler.MSG_GET_SUMMARY_HEALTH_MONTHLY);
 			}
 		});
@@ -287,6 +312,9 @@ public class ExStatusActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				((TextView) findViewById(R.id.btn_es_health_monthly)).setSelected(false);
+				((TextView) findViewById(R.id.btn_es_health_weekly)).setSelected(true);
+				((TextView) findViewById(R.id.btn_es_health_daily)).setSelected(false);
 
 				mUiHandler.sendEmptyMessage(mUiHandler.MSG_GET_SUMMARY_HEALTH_WEEKLY);
 			}
@@ -297,6 +325,9 @@ public class ExStatusActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				((TextView) findViewById(R.id.btn_es_health_monthly)).setSelected(false);
+				((TextView) findViewById(R.id.btn_es_health_weekly)).setSelected(false);
+				((TextView) findViewById(R.id.btn_es_health_daily)).setSelected(true);
 
 				mUiHandler.sendEmptyMessage(mUiHandler.MSG_GET_SUMMARY_HEALTH_DAILY);
 			}
@@ -309,7 +340,7 @@ public class ExStatusActivity extends Activity {
 				// TODO Auto-generated method stub
 
 				// Utility.msgbox(ExStatusActivity.this, "Total Graph");
-				findViewById(R.id.common_include_view_health_graph).setVisibility(View.VISIBLE);
+				mUiHandler.sendEmptyMessage(mUiHandler.MSG_GET_SUMMARY_HEALTH_GRAPH);
 			}
 		});
 
@@ -320,7 +351,7 @@ public class ExStatusActivity extends Activity {
 				// TODO Auto-generated method stub
 
 				// Utility.msgbox(ExStatusActivity.this, "Monthly Graph");
-				findViewById(R.id.common_include_view_health_graph).setVisibility(View.VISIBLE);
+				// findViewById(R.id.common_include_view_health_info_graph).setVisibility(View.VISIBLE);
 			}
 		});
 
@@ -330,15 +361,19 @@ public class ExStatusActivity extends Activity {
 			Password = intent.getStringExtra("Password");
 		}
 
-		UserID = "1";// null;
-		Password = "1";// null;
+		// UserID = null;
+		// Password = null;
 
 		if (UserID != null) {
+			((TextView) findViewById(R.id.btn_es_health_monthly)).setSelected(true);
+
 			// mUiHandler.sendEmptyMessage(mUiHandler.MSG_LOADING);
 			mUiHandler.sendEmptyMessage(mUiHandler.MSG_GET_USER);
 			mUiHandler.sendEmptyMessage(mUiHandler.MSG_GET_LISTVIEW_HEALTH);
 			mUiHandler.sendEmptyMessage(mUiHandler.MSG_GET_SUMMARY_HEALTH_TOTAL);
 			mUiHandler.sendEmptyMessage(mUiHandler.MSG_GET_SUMMARY_HEALTH_MONTHLY);
+		} else {
+			Utility.msgbox(this, "Invalid User !!");
 		}
 	}
 
@@ -353,8 +388,8 @@ public class ExStatusActivity extends Activity {
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 
-		if (findViewById(R.id.common_include_view_health_graph).getVisibility() == View.VISIBLE) {
-			findViewById(R.id.common_include_view_health_graph).setVisibility(View.GONE);
+		if (findViewById(R.id.common_include_view_health_info_graph).getVisibility() == View.VISIBLE) {
+			findViewById(R.id.common_include_view_health_info_graph).setVisibility(View.GONE);
 			return;
 		}
 		super.onBackPressed();
@@ -407,6 +442,13 @@ public class ExStatusActivity extends Activity {
 						}
 					}
 				}
+			} else {
+				((TextView) findViewById(R.id.txtView_es_id)).setText("");
+				((TextView) findViewById(R.id.txtView_es_passwd)).setText("");
+				((TextView) findViewById(R.id.txtView_es_name)).setText("");
+				((TextView) findViewById(R.id.txtView_es_weight)).setText("");
+				((TextView) findViewById(R.id.txtView_es_rfid)).setText("");
+				((TextView) findViewById(R.id.txtView_es_gender)).setText("");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -467,6 +509,7 @@ public class ExStatusActivity extends Activity {
 			mArrayList.add("0"); // sum
 			mArrayList.add("0"); // limit
 			mArrayList.add("0"); // desc
+			mArrayList.add("0"); // graph
 			mHealthInfoAdapter.clear();
 			// mHealthInfoAdapter.notifyDataSetChanged();
 
@@ -475,8 +518,8 @@ public class ExStatusActivity extends Activity {
 				JSONObject root = new JSONObject(mRetJson.toString());
 				JSONArray results = root.getJSONArray("results");
 
-				((TextView) findViewById(R.id.txtView_hs_health_list_num))
-						.setText(String.format("%d", results.length()));
+				((TextView) findViewById(R.id.txtView_hs_health_list_num)).setText(String.format("%s/%s : %d",
+						mCurTime.substring(0, 4), mCurTime.substring(4, 6), results.length()));
 				for (int num = results.length(); num > 0; num--) {
 					JSONObject resultInfo = results.getJSONObject(num - 1);
 					healthInfoList mHealthInfoList = new healthInfoList();
@@ -507,6 +550,9 @@ public class ExStatusActivity extends Activity {
 						mHealthInfoAdapter.add(mHealthInfoList);
 					}
 				}
+			} else {
+				((TextView) findViewById(R.id.txtView_hs_health_list_num))
+						.setText(String.format("%s/%s : 0", mCurTime.substring(0, 4), mCurTime.substring(4, 6)));
 			}
 
 			Log.d((new Exception()).getStackTrace()[0].getMethodName(), "Time : " + Utility.getNowDateTime());
@@ -524,7 +570,7 @@ public class ExStatusActivity extends Activity {
 			StringBuilder mRetJson = new StringBuilder();
 			// Health information of monthly
 			String curTime = Utility.getNowDateTime();
-			String stTime = String.format("201601000000");
+			String stTime = String.format("20160101000000");
 			String stTime2 = String.format("%s32000000", curTime.substring(0, 6));
 
 			// information of total exercise - start time
@@ -540,6 +586,7 @@ public class ExStatusActivity extends Activity {
 			mArrayList.add("0"); // sum
 			mArrayList.add("1"); // limit
 			mArrayList.add("0"); // desc
+			mArrayList.add("0"); // graph
 
 			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
 
@@ -549,15 +596,17 @@ public class ExStatusActivity extends Activity {
 				if (results.length() > 0) {
 					JSONObject resultInfo = results.getJSONObject(0);
 
-					String st_time = resultInfo.getString("st_time");
-					if (st_time != null) {
-						String startTime = String.format("%s/%s/%s %s:%s:%s", st_time.substring(0, 4),
-								st_time.substring(4, 6), st_time.substring(6, 8), st_time.substring(8, 10),
-								st_time.substring(10, 12), st_time.substring(12, 14));
+					mStartTime = resultInfo.getString("st_time");
+					if (mStartTime != null) {
+						String startTime = String.format("%s/%s/%s %s:%s:%s", mStartTime.substring(0, 4),
+								mStartTime.substring(4, 6), mStartTime.substring(6, 8), mStartTime.substring(8, 10),
+								mStartTime.substring(10, 12), mStartTime.substring(12, 14));
 
 						((TextView) findViewById(R.id.txtView_hs_total_stime)).setText(startTime);
 					}
 				}
+			} else {
+				((TextView) findViewById(R.id.txtView_hs_total_stime)).setText("");
 			}
 
 			// information of total exercise - end time
@@ -573,6 +622,7 @@ public class ExStatusActivity extends Activity {
 			mArrayList.add("0"); // sum
 			mArrayList.add("1"); // limit
 			mArrayList.add("1"); // desc
+			mArrayList.add("0"); // graph
 
 			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
 
@@ -582,111 +632,87 @@ public class ExStatusActivity extends Activity {
 				if (results.length() > 0) {
 					JSONObject resultInfo = results.getJSONObject(0);
 
-					String en_time = resultInfo.getString("en_time");
-					if (en_time != null) {
-						String EndTime = String.format("%s/%s/%s %s:%s:%s", en_time.substring(0, 4),
-								en_time.substring(4, 6), en_time.substring(6, 8), en_time.substring(8, 10),
-								en_time.substring(10, 12), en_time.substring(12, 14));
+					mEndTime = resultInfo.getString("en_time");
+					if (mEndTime != null) {
+						String EndTime = String.format("%s/%s/%s %s:%s:%s", mEndTime.substring(0, 4),
+								mEndTime.substring(4, 6), mEndTime.substring(6, 8), mEndTime.substring(8, 10),
+								mEndTime.substring(10, 12), mEndTime.substring(12, 14));
 
 						((TextView) findViewById(R.id.txtView_hs_total_etime)).setText(EndTime);
 					}
 				}
+			} else {
+				((TextView) findViewById(R.id.txtView_hs_total_etime)).setText("");
 			}
 
-			// information of total exercise - calories
-			mRetJson.delete(0, mRetJson.length());
-			mArrayList.clear();
-			mArrayList.add(UserID);
-			mArrayList.add("0"); // ex_variety
-			mArrayList.add(stTime); // st_time
-			mArrayList.add(stTime2); // st_time2
-			mArrayList.add("1"); // ex_calories
-			mArrayList.add("0"); // ex_distance
-			mArrayList.add("0"); // ex_time
-			mArrayList.add("1"); // sum
-			mArrayList.add("0"); // limit
-			mArrayList.add("0"); // desc
+			if (!(((TextView) findViewById(R.id.txtView_hs_total_stime)).getText().toString().equalsIgnoreCase("")
+					|| ((TextView) findViewById(R.id.txtView_hs_total_etime)).getText().toString()
+							.equalsIgnoreCase(""))) {
+				// information of total exercise - calories
+				mRetJson.delete(0, mRetJson.length());
+				mArrayList.clear();
+				mArrayList.add(UserID);
+				mArrayList.add("0"); // ex_variety
+				mArrayList.add(stTime); // st_time
+				mArrayList.add(stTime2); // st_time2
+				mArrayList.add("1"); // ex_calories
+				mArrayList.add("0"); // ex_distance
+				mArrayList.add("0"); // ex_time
+				mArrayList.add("1"); // sum
+				mArrayList.add("0"); // limit
+				mArrayList.add("0"); // desc
+				mArrayList.add("0"); // graph
 
-			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
+				if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
 
-				JSONObject root = new JSONObject(mRetJson.toString());
-				JSONArray results = root.getJSONArray("results");
+					JSONObject root = new JSONObject(mRetJson.toString());
+					JSONArray results = root.getJSONArray("results");
 
-				if (results.length() > 0) {
-					JSONObject resultInfo = results.getJSONObject(0);
+					if (results.length() > 0) {
+						JSONObject resultInfo = results.getJSONObject(0);
 
-					String sum_ex_calories = resultInfo.getString("SUM(`ex_calories`)");
-					if (sum_ex_calories.length() > 3) {
-						String sum_ex_calories2 = String.format("%d,%d", Integer.parseInt(sum_ex_calories) / 1000,
-								Integer.parseInt(sum_ex_calories) % 1000);
-						((TextView) findViewById(R.id.txtView_hs_total_calories)).setText(sum_ex_calories2);
-					} else {
-						((TextView) findViewById(R.id.txtView_hs_total_calories)).setText(sum_ex_calories);
+						String sum_ex_calories = resultInfo.getString("SUM(`ex_calories`)");
+						String sum_ex_time = resultInfo.getString("SUM(`ex_time`)");
+						String sum_ex_distance = resultInfo.getString("SUM(`ex_distance`)");
+
+						if (sum_ex_calories.equalsIgnoreCase("")) {
+							sum_ex_calories = "0";
+						}
+						if (sum_ex_time.equalsIgnoreCase("")) {
+							sum_ex_time = "0";
+						}
+						if (sum_ex_distance.equalsIgnoreCase("")) {
+							sum_ex_distance = "0";
+						}
+
+						if (sum_ex_calories.length() > 3) {
+							String sum_ex_calories2 = String.format("%d,%d", Integer.parseInt(sum_ex_calories) / 1000,
+									Integer.parseInt(sum_ex_calories) % 1000);
+							((TextView) findViewById(R.id.txtView_hs_total_calories)).setText(sum_ex_calories2);
+						} else {
+							((TextView) findViewById(R.id.txtView_hs_total_calories)).setText(sum_ex_calories);
+						}
+
+						if (sum_ex_distance.length() > 3) {
+							String sum_ex_distance2 = String.format("%d,%d", Integer.parseInt(sum_ex_distance) / 1000,
+									Integer.parseInt(sum_ex_distance) % 1000);
+							((TextView) findViewById(R.id.txtView_hs_total_distance)).setText(sum_ex_distance2);
+						} else {
+							((TextView) findViewById(R.id.txtView_hs_total_distance)).setText(sum_ex_distance);
+						}
+
+						String sum_ex_time2 = String.format("%02d:%02d:00", Integer.parseInt(sum_ex_time) / 60,
+								Integer.parseInt(sum_ex_time) % 60);
+						((TextView) findViewById(R.id.txtView_hs_total_time)).setText(sum_ex_time2);
+
+						return;
 					}
 				}
 			}
 
-			// information of total exercise - end time
-			mRetJson.delete(0, mRetJson.length());
-			mArrayList.clear();
-			mArrayList.add(UserID);
-			mArrayList.add("0"); // ex_variety
-			mArrayList.add(stTime); // st_time
-			mArrayList.add(stTime2); // st_time2
-			mArrayList.add("0"); // ex_calories
-			mArrayList.add("1"); // ex_distance
-			mArrayList.add("0"); // ex_time
-			mArrayList.add("1"); // sum
-			mArrayList.add("0"); // limit
-			mArrayList.add("0"); // desc
-
-			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
-
-				JSONObject root = new JSONObject(mRetJson.toString());
-				JSONArray results = root.getJSONArray("results");
-
-				if (results.length() > 0) {
-					JSONObject resultInfo = results.getJSONObject(0);
-
-					String sum_ex_distance = resultInfo.getString("SUM(`ex_distance`)");
-					if (sum_ex_distance.length() > 3) {
-						String sum_ex_distance2 = String.format("%d,%d", Integer.parseInt(sum_ex_distance) / 1000,
-								Integer.parseInt(sum_ex_distance) % 1000);
-						((TextView) findViewById(R.id.txtView_hs_total_distance)).setText(sum_ex_distance2);
-					} else {
-						((TextView) findViewById(R.id.txtView_hs_total_distance)).setText(sum_ex_distance);
-					}
-				}
-			}
-
-			// information of total exercise - end time
-			mRetJson.delete(0, mRetJson.length());
-			mArrayList.clear();
-			mArrayList.add(UserID);
-			mArrayList.add("0"); // ex_variety
-			mArrayList.add(stTime); // st_time
-			mArrayList.add(stTime2); // st_time2
-			mArrayList.add("0"); // ex_calories
-			mArrayList.add("0"); // ex_distance
-			mArrayList.add("1"); // ex_time
-			mArrayList.add("1"); // sum
-			mArrayList.add("0"); // limit
-			mArrayList.add("0"); // desc
-
-			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
-
-				JSONObject root = new JSONObject(mRetJson.toString());
-				JSONArray results = root.getJSONArray("results");
-
-				if (results.length() > 0) {
-					JSONObject resultInfo = results.getJSONObject(0);
-
-					String sum_ex_time = resultInfo.getString("SUM(`ex_time`)");
-					String sum_ex_time2 = String.format("%02d:%02d:00", Integer.parseInt(sum_ex_time) / 60,
-							Integer.parseInt(sum_ex_time) % 60);
-					((TextView) findViewById(R.id.txtView_hs_total_time)).setText(sum_ex_time2);
-				}
-			}
+			((TextView) findViewById(R.id.txtView_hs_total_calories)).setText("");
+			((TextView) findViewById(R.id.txtView_hs_total_distance)).setText("");
+			((TextView) findViewById(R.id.txtView_hs_total_time)).setText("");
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -704,9 +730,18 @@ public class ExStatusActivity extends Activity {
 				stTime = String.format("%s000000", curTime.substring(0, 8));
 				stTime2 = String.format("%s235959", curTime.substring(0, 8));
 			} else if (date.equalsIgnoreCase("weekly")) {
-
+				stTime2 = curTime;
+				Calendar cal = Calendar.getInstance();
+				Date toDay = cal.getTime();
+				cal.setTime(toDay);
+				cal.add(Calendar.DAY_OF_YEAR, -7);
+				stTime = new SimpleDateFormat("yyyyMMddHHmmss").format(cal.getTime());
+				
+				if (Double.parseDouble(stTime) - Double.parseDouble(mStartTime) <= 0) {
+					stTime = mStartTime;
+				}				
 			} else if (date.equalsIgnoreCase("monthly")) {
-				stTime = String.format("%s00000000", curTime.substring(0, 6));
+				stTime = String.format("%s01000000", curTime.substring(0, 6));
 				stTime2 = String.format("%s32000000", curTime.substring(0, 6));
 			}
 
@@ -726,6 +761,7 @@ public class ExStatusActivity extends Activity {
 			mArrayList.add("0"); // sum
 			mArrayList.add("1"); // limit
 			mArrayList.add("0"); // desc
+			mArrayList.add("0"); // graph
 
 			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
 
@@ -744,6 +780,8 @@ public class ExStatusActivity extends Activity {
 						((TextView) findViewById(R.id.txtView_hs_search_stime_bike)).setText(startTime);
 					}
 				}
+			} else {
+				((TextView) findViewById(R.id.txtView_hs_search_stime_bike)).setText("");
 			}
 
 			// information of total exercise - end time
@@ -759,6 +797,7 @@ public class ExStatusActivity extends Activity {
 			mArrayList.add("0"); // sum
 			mArrayList.add("1"); // limit
 			mArrayList.add("1"); // desc
+			mArrayList.add("0"); // graph
 
 			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
 
@@ -777,105 +816,78 @@ public class ExStatusActivity extends Activity {
 						((TextView) findViewById(R.id.txtView_hs_search_etime_bike)).setText(EndTime);
 					}
 				}
+			} else {
+				((TextView) findViewById(R.id.txtView_hs_search_etime_bike)).setText("");
 			}
 
-			// information of total exercise - calories
-			mRetJson.delete(0, mRetJson.length());
-			mArrayList.clear();
-			mArrayList.add(UserID);
-			mArrayList.add("BIKE"); // ex_variety
-			mArrayList.add(stTime); // st_time
-			mArrayList.add(stTime2); // st_time2
-			mArrayList.add("1"); // ex_calories
-			mArrayList.add("0"); // ex_distance
-			mArrayList.add("0"); // ex_time
-			mArrayList.add("1"); // sum
-			mArrayList.add("0"); // limit
-			mArrayList.add("0"); // desc
+			if (!(((TextView) findViewById(R.id.txtView_hs_search_stime_bike)).getText().toString().equalsIgnoreCase("")
+					|| ((TextView) findViewById(R.id.txtView_hs_search_etime_bike)).getText().toString()
+							.equalsIgnoreCase(""))) {
 
-			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
+				// information of total exercise - calories
+				mRetJson.delete(0, mRetJson.length());
+				mArrayList.clear();
+				mArrayList.add(UserID);
+				mArrayList.add("BIKE"); // ex_variety
+				mArrayList.add(stTime); // st_time
+				mArrayList.add(stTime2); // st_time2
+				mArrayList.add("0"); // ex_calories
+				mArrayList.add("0"); // ex_distance
+				mArrayList.add("0"); // ex_time
+				mArrayList.add("1"); // sum
+				mArrayList.add("0"); // limit
+				mArrayList.add("0"); // desc
+				mArrayList.add("0"); // graph
 
-				JSONObject root = new JSONObject(mRetJson.toString());
-				JSONArray results = root.getJSONArray("results");
+				if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
 
-				if (results.length() > 0) {
-					JSONObject resultInfo = results.getJSONObject(0);
+					JSONObject root = new JSONObject(mRetJson.toString());
+					JSONArray results = root.getJSONArray("results");
 
-					String sum_ex_calories = resultInfo.getString("SUM(`ex_calories`)");
-					if (sum_ex_calories.length() > 3) {
-						String sum_ex_calories2 = String.format("%d,%d", Integer.parseInt(sum_ex_calories) / 1000,
-								Integer.parseInt(sum_ex_calories) % 1000);
-						((TextView) findViewById(R.id.txtView_hs_search_calories_bike)).setText(sum_ex_calories2);
-					} else {
-						((TextView) findViewById(R.id.txtView_hs_search_calories_bike)).setText(sum_ex_calories);
+					if (results.length() > 0) {
+						JSONObject resultInfo = results.getJSONObject(0);
+
+						String sum_ex_calories = resultInfo.getString("SUM(`ex_calories`)");
+						String sum_ex_distance = resultInfo.getString("SUM(`ex_distance`)");
+						String sum_ex_time = resultInfo.getString("SUM(`ex_time`)");
+
+						if (sum_ex_calories.equalsIgnoreCase("")) {
+							sum_ex_calories = "0";
+						}
+						if (sum_ex_time.equalsIgnoreCase("")) {
+							sum_ex_time = "0";
+						}
+						if (sum_ex_distance.equalsIgnoreCase("")) {
+							sum_ex_distance = "0";
+						}
+
+						if (sum_ex_calories.length() > 3) {
+							String sum_ex_calories2 = String.format("%d,%d", Integer.parseInt(sum_ex_calories) / 1000,
+									Integer.parseInt(sum_ex_calories) % 1000);
+							((TextView) findViewById(R.id.txtView_hs_search_calories_bike)).setText(sum_ex_calories2);
+						} else {
+							((TextView) findViewById(R.id.txtView_hs_search_calories_bike)).setText(sum_ex_calories);
+						}
+						if (sum_ex_distance.length() > 3) {
+							String sum_ex_distance2 = String.format("%d,%d", Integer.parseInt(sum_ex_distance) / 1000,
+									Integer.parseInt(sum_ex_distance) % 1000);
+							((TextView) findViewById(R.id.txtView_hs_search_distance_bike)).setText(sum_ex_distance2);
+						} else {
+							((TextView) findViewById(R.id.txtView_hs_search_distance_bike)).setText(sum_ex_distance);
+						}
+
+						String sum_ex_time2 = String.format("%02d:%02d:00", Integer.parseInt(sum_ex_time) / 60,
+								Integer.parseInt(sum_ex_time) % 60);
+						((TextView) findViewById(R.id.txtView_hs_search_time_bike)).setText(sum_ex_time2);
 					}
 				}
-			}
-
-			// information of total exercise - end time
-			mRetJson.delete(0, mRetJson.length());
-			mArrayList.clear();
-			mArrayList.add(UserID);
-			mArrayList.add("BIKE"); // ex_variety
-			mArrayList.add(stTime); // st_time
-			mArrayList.add(stTime2); // st_time2
-			mArrayList.add("0"); // ex_calories
-			mArrayList.add("1"); // ex_distance
-			mArrayList.add("0"); // ex_time
-			mArrayList.add("1"); // sum
-			mArrayList.add("0"); // limit
-			mArrayList.add("0"); // desc
-
-			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
-
-				JSONObject root = new JSONObject(mRetJson.toString());
-				JSONArray results = root.getJSONArray("results");
-
-				if (results.length() > 0) {
-					JSONObject resultInfo = results.getJSONObject(0);
-
-					String sum_ex_distance = resultInfo.getString("SUM(`ex_distance`)");
-					if (sum_ex_distance.length() > 3) {
-						String sum_ex_distance2 = String.format("%d,%d", Integer.parseInt(sum_ex_distance) / 1000,
-								Integer.parseInt(sum_ex_distance) % 1000);
-						((TextView) findViewById(R.id.txtView_hs_search_distance_bike)).setText(sum_ex_distance2);
-					} else {
-						((TextView) findViewById(R.id.txtView_hs_search_distance_bike)).setText(sum_ex_distance);
-					}
-				}
-			}
-
-			// information of total exercise - end time
-			mRetJson.delete(0, mRetJson.length());
-			mArrayList.clear();
-			mArrayList.add(UserID);
-			mArrayList.add("BIKE"); // ex_variety
-			mArrayList.add(stTime); // st_time
-			mArrayList.add(stTime2); // st_time2
-			mArrayList.add("0"); // ex_calories
-			mArrayList.add("0"); // ex_distance
-			mArrayList.add("1"); // ex_time
-			mArrayList.add("1"); // sum
-			mArrayList.add("0"); // limit
-			mArrayList.add("0"); // desc
-
-			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
-
-				JSONObject root = new JSONObject(mRetJson.toString());
-				JSONArray results = root.getJSONArray("results");
-
-				if (results.length() > 0) {
-					JSONObject resultInfo = results.getJSONObject(0);
-
-					String sum_ex_time = resultInfo.getString("SUM(`ex_time`)");
-					String sum_ex_time2 = String.format("%02d:%02d:00", Integer.parseInt(sum_ex_time) / 60,
-							Integer.parseInt(sum_ex_time) % 60);
-					((TextView) findViewById(R.id.txtView_hs_search_time_bike)).setText(sum_ex_time2);
-				}
+			} else {
+				((TextView) findViewById(R.id.txtView_hs_search_calories_bike)).setText("");
+				((TextView) findViewById(R.id.txtView_hs_search_distance_bike)).setText("");
+				((TextView) findViewById(R.id.txtView_hs_search_time_bike)).setText("");
 			}
 
 			// Treadmill
-
 			// information of total exercise - start time
 			mRetJson.delete(0, mRetJson.length());
 			mArrayList.clear();
@@ -889,6 +901,7 @@ public class ExStatusActivity extends Activity {
 			mArrayList.add("0"); // sum
 			mArrayList.add("1"); // limit
 			mArrayList.add("0"); // desc
+			mArrayList.add("0"); // graph
 
 			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
 
@@ -907,6 +920,8 @@ public class ExStatusActivity extends Activity {
 						((TextView) findViewById(R.id.txtView_hs_search_stime_treadmill)).setText(startTime);
 					}
 				}
+			} else {
+				((TextView) findViewById(R.id.txtView_hs_search_stime_treadmill)).setText("");
 			}
 
 			// information of total exercise - end time
@@ -922,6 +937,7 @@ public class ExStatusActivity extends Activity {
 			mArrayList.add("0"); // sum
 			mArrayList.add("1"); // limit
 			mArrayList.add("1"); // desc
+			mArrayList.add("0"); // graph
 
 			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
 
@@ -940,105 +956,291 @@ public class ExStatusActivity extends Activity {
 						((TextView) findViewById(R.id.txtView_hs_search_etime_treadmill)).setText(EndTime);
 					}
 				}
+			} else {
+				((TextView) findViewById(R.id.txtView_hs_search_etime_treadmill)).setText("");
 			}
 
-			// information of total exercise - calories
-			mRetJson.delete(0, mRetJson.length());
-			mArrayList.clear();
-			mArrayList.add(UserID);
-			mArrayList.add("TREADMILL"); // ex_variety
-			mArrayList.add(stTime); // st_time
-			mArrayList.add(stTime2); // st_time2
-			mArrayList.add("1"); // ex_calories
-			mArrayList.add("0"); // ex_distance
-			mArrayList.add("0"); // ex_time
-			mArrayList.add("1"); // sum
-			mArrayList.add("0"); // limit
-			mArrayList.add("0"); // desc
+			if (!(((TextView) findViewById(R.id.txtView_hs_search_stime_treadmill)).getText().toString()
+					.equalsIgnoreCase("")
+					|| ((TextView) findViewById(R.id.txtView_hs_search_etime_treadmill)).getText().toString()
+							.equalsIgnoreCase(""))) {
 
-			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
+				// information of total exercise - calories
+				mRetJson.delete(0, mRetJson.length());
+				mArrayList.clear();
+				mArrayList.add(UserID);
+				mArrayList.add("TREADMILL"); // ex_variety
+				mArrayList.add(stTime); // st_time
+				mArrayList.add(stTime2); // st_time2
+				mArrayList.add("0"); // ex_calories
+				mArrayList.add("0"); // ex_distance
+				mArrayList.add("0"); // ex_time
+				mArrayList.add("1"); // sum
+				mArrayList.add("0"); // limit
+				mArrayList.add("0"); // desc
+				mArrayList.add("0"); // graph
 
-				JSONObject root = new JSONObject(mRetJson.toString());
-				JSONArray results = root.getJSONArray("results");
+				if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
 
-				if (results.length() > 0) {
-					JSONObject resultInfo = results.getJSONObject(0);
+					JSONObject root = new JSONObject(mRetJson.toString());
+					JSONArray results = root.getJSONArray("results");
 
-					String sum_ex_calories = resultInfo.getString("SUM(`ex_calories`)");
-					if (sum_ex_calories.length() > 3) {
-						String sum_ex_calories2 = String.format("%d,%d", Integer.parseInt(sum_ex_calories) / 1000,
-								Integer.parseInt(sum_ex_calories) % 1000);
-						((TextView) findViewById(R.id.txtView_hs_search_calories_treadmill)).setText(sum_ex_calories2);
-					} else {
-						((TextView) findViewById(R.id.txtView_hs_search_calories_treadmill)).setText(sum_ex_calories);
+					if (results.length() > 0) {
+						JSONObject resultInfo = results.getJSONObject(0);
+
+						String sum_ex_calories = resultInfo.getString("SUM(`ex_calories`)");
+						String sum_ex_distance = resultInfo.getString("SUM(`ex_distance`)");
+						String sum_ex_time = resultInfo.getString("SUM(`ex_time`)");
+
+						if (sum_ex_calories.equalsIgnoreCase("")) {
+							sum_ex_calories = "0";
+						}
+						if (sum_ex_time.equalsIgnoreCase("")) {
+							sum_ex_time = "0";
+						}
+						if (sum_ex_distance.equalsIgnoreCase("")) {
+							sum_ex_distance = "0";
+						}
+
+						if (sum_ex_calories.length() > 3) {
+							String sum_ex_calories2 = String.format("%d,%d", Integer.parseInt(sum_ex_calories) / 1000,
+									Integer.parseInt(sum_ex_calories) % 1000);
+							((TextView) findViewById(R.id.txtView_hs_search_calories_treadmill))
+									.setText(sum_ex_calories2);
+						} else {
+							((TextView) findViewById(R.id.txtView_hs_search_calories_treadmill))
+									.setText(sum_ex_calories);
+						}
+						if (sum_ex_distance.length() > 3) {
+							String sum_ex_distance2 = String.format("%d,%d", Integer.parseInt(sum_ex_distance) / 1000,
+									Integer.parseInt(sum_ex_distance) % 1000);
+							((TextView) findViewById(R.id.txtView_hs_search_distance_treadmill))
+									.setText(sum_ex_distance2);
+						} else {
+							((TextView) findViewById(R.id.txtView_hs_search_distance_treadmill))
+									.setText(sum_ex_distance);
+						}
+
+						String sum_ex_time2 = String.format("%02d:%02d:00", Integer.parseInt(sum_ex_time) / 60,
+								Integer.parseInt(sum_ex_time) % 60);
+						((TextView) findViewById(R.id.txtView_hs_search_time_treadmill)).setText(sum_ex_time2);
 					}
 				}
-			}
-
-			// information of total exercise - end time
-			mRetJson.delete(0, mRetJson.length());
-			mArrayList.clear();
-			mArrayList.add(UserID);
-			mArrayList.add("TREADMILL"); // ex_variety
-			mArrayList.add(stTime); // st_time
-			mArrayList.add(stTime2); // st_time2
-			mArrayList.add("0"); // ex_calories
-			mArrayList.add("1"); // ex_distance
-			mArrayList.add("0"); // ex_time
-			mArrayList.add("1"); // sum
-			mArrayList.add("0"); // limit
-			mArrayList.add("0"); // desc
-
-			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
-
-				JSONObject root = new JSONObject(mRetJson.toString());
-				JSONArray results = root.getJSONArray("results");
-
-				if (results.length() > 0) {
-					JSONObject resultInfo = results.getJSONObject(0);
-
-					String sum_ex_distance = resultInfo.getString("SUM(`ex_distance`)");
-					if (sum_ex_distance.length() > 3) {
-						String sum_ex_distance2 = String.format("%d,%d", Integer.parseInt(sum_ex_distance) / 1000,
-								Integer.parseInt(sum_ex_distance) % 1000);
-						((TextView) findViewById(R.id.txtView_hs_search_distance_treadmill)).setText(sum_ex_distance2);
-					} else {
-						((TextView) findViewById(R.id.txtView_hs_search_distance_treadmill)).setText(sum_ex_distance);
-					}
-				}
-			}
-
-			// information of total exercise - end time
-			mRetJson.delete(0, mRetJson.length());
-			mArrayList.clear();
-			mArrayList.add(UserID);
-			mArrayList.add("TREADMILL"); // ex_variety
-			mArrayList.add(stTime); // st_time
-			mArrayList.add(stTime2); // st_time2
-			mArrayList.add("0"); // ex_calories
-			mArrayList.add("0"); // ex_distance
-			mArrayList.add("1"); // ex_time
-			mArrayList.add("1"); // sum
-			mArrayList.add("0"); // limit
-			mArrayList.add("0"); // desc
-
-			if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
-
-				JSONObject root = new JSONObject(mRetJson.toString());
-				JSONArray results = root.getJSONArray("results");
-
-				if (results.length() > 0) {
-					JSONObject resultInfo = results.getJSONObject(0);
-
-					String sum_ex_time = resultInfo.getString("SUM(`ex_time`)");
-					String sum_ex_time2 = String.format("%02d:%02d:00", Integer.parseInt(sum_ex_time) / 60,
-							Integer.parseInt(sum_ex_time) % 60);
-					((TextView) findViewById(R.id.txtView_hs_search_time_treadmill)).setText(sum_ex_time2);
-				}
+			} else {
+				((TextView) findViewById(R.id.txtView_hs_search_calories_treadmill)).setText("");
+				((TextView) findViewById(R.id.txtView_hs_search_distance_treadmill)).setText("");
+				((TextView) findViewById(R.id.txtView_hs_search_time_treadmill)).setText("");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+
+	private void getSummaryExerciseInfoGraph() {
+		try {
+			Boolean queryStop = false;
+			String queryStartDate = null;
+			String queryEndDate = null;
+			ArrayList<String> mArrayList = new ArrayList<String>();
+			StringBuilder mRetJson = new StringBuilder();
+
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+			Calendar cal = Calendar.getInstance();
+
+			Date beginDate = formatter.parse(mStartTime);
+			Date endDate = formatter.parse(mEndTime);
+			long diff = endDate.getTime() - beginDate.getTime();
+			long diffDays = diff / (24 * 60 * 60 * 1000);
+			int x_axis = (int) diffDays / 10;
+
+			if (x_axis <= 0)
+				x_axis = 1;
+
+			float[] bike_ex_calories = new float[10];
+			float[] Treadmill_ex_calories = new float[10];
+			float[] bikeTreadmill_ex_calories = new float[10];
+
+			float[] bike_ex_heartplus = new float[10];
+			float[] Treadmill_ex_heartplus = new float[10];
+			float[] bikeTreadmill_ex_heartplus = new float[10];
+
+			float[] bike_ex_time = new float[10];
+			float[] Treadmill_ex_time = new float[10];
+			float[] bikeTreadmill_ex_time = new float[10];
+
+			float[] bike_ex_distance = new float[10];
+			float[] Treadmill_ex_distance = new float[10];
+			float[] bikeTreadmill_ex_distance = new float[10];
+
+			int xNum = 10; // fix
+			for (int i = 1; i <= x_axis; i++) {
+
+				if (queryStartDate == null && queryEndDate == null) {
+					queryEndDate = mEndTime;
+
+					cal.setTime(endDate);
+					cal.add(Calendar.DAY_OF_YEAR, -10);
+					queryStartDate = new SimpleDateFormat("yyyyMMddHHmmss").format(cal.getTime());
+				} else {
+					queryEndDate = queryStartDate;
+					endDate = formatter.parse(queryEndDate);
+
+					cal.setTime(endDate);
+					cal.add(Calendar.DAY_OF_YEAR, -10);
+					queryStartDate = new SimpleDateFormat("yyyyMMddHHmmss").format(cal.getTime());
+				}
+
+				if ((Double.parseDouble(queryStartDate) - Double.parseDouble(mStartTime) <= 0) || (i == 10)
+						|| (x_axis == i)) {
+					queryStartDate = mStartTime;
+					queryStop = true;
+				}
+
+				mRetJson.delete(0, mRetJson.length());
+				mArrayList.clear();
+				mArrayList.add(UserID);
+				mArrayList.add("0"); // ex_variety
+				mArrayList.add(queryStartDate); // st_time
+				mArrayList.add(queryEndDate); // st_time2
+				mArrayList.add("0"); // ex_calories
+				mArrayList.add("0"); // ex_distance
+				mArrayList.add("0"); // ex_time
+				mArrayList.add("0"); // sum
+				mArrayList.add("0"); // limit
+				mArrayList.add("0"); // desc
+				mArrayList.add("1"); // graph
+
+				if (Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
+
+					JSONObject root = new JSONObject(mRetJson.toString());
+					JSONArray results = root.getJSONArray("results");
+					float ex_c = 0;
+					float ex_h = 0;
+					float ex_t = 0;
+					float ex_d = 0;
+
+					if (results.length() > 0) {
+						for (int num = 0; num < results.length(); num++) {
+							JSONObject resultInfo = results.getJSONObject(num);
+
+							String ex_calories = resultInfo.getString("SUM(`ex_calories`)");
+							String ex_heartplus = resultInfo.getString("SUM(`ex_heartplus`)");
+							String ex_time = resultInfo.getString("SUM(`ex_time`)");
+							String ex_distance = resultInfo.getString("SUM(`ex_distance`)");
+
+							if (ex_calories.equalsIgnoreCase("")) {
+								ex_calories = "0";
+							}
+							if (ex_heartplus.equalsIgnoreCase("")) {
+								ex_heartplus = "0";
+							}
+							if (ex_time.equalsIgnoreCase("")) {
+								ex_time = "0";
+							}
+							if (ex_distance.equalsIgnoreCase("")) {
+								ex_distance = "0";
+							}
+
+							ex_c = Float.parseFloat(ex_calories);
+							ex_h = Float.parseFloat(ex_heartplus);
+							ex_t = Float.parseFloat(ex_time);
+							ex_d = Float.parseFloat(ex_distance);
+
+							if (num == 0) {
+								--xNum;
+
+								if (ex_c <= mGraph.maxValue) {
+									Treadmill_ex_calories[xNum] = ex_c;
+								} else {
+									Treadmill_ex_calories[xNum] = mGraph.maxValue;
+								}
+								if (ex_h <= mGraph.maxValue) {
+									Treadmill_ex_heartplus[xNum] = ex_h;
+								} else {
+									Treadmill_ex_heartplus[xNum] = mGraph.maxValue;
+								}
+								if (ex_t <= mGraph.maxValue) {
+									Treadmill_ex_time[xNum] = ex_t;
+								} else {
+									Treadmill_ex_time[xNum] = mGraph.maxValue;
+								}
+								if (ex_d <= mGraph.maxValue) {
+									Treadmill_ex_distance[xNum] = ex_d;
+								} else {
+									Treadmill_ex_distance[xNum] = mGraph.maxValue;
+								}
+							} else {
+								if (ex_c <= mGraph.maxValue) {
+									bike_ex_calories[xNum] = ex_c;
+								} else {
+									bike_ex_calories[xNum] = mGraph.maxValue;
+								}
+								if (ex_h <= mGraph.maxValue) {
+									bike_ex_heartplus[xNum] = ex_h;
+								} else {
+									bike_ex_heartplus[xNum] = mGraph.maxValue;
+								}
+								if (ex_t <= mGraph.maxValue) {
+									bike_ex_time[xNum] = ex_t;
+								} else {
+									bike_ex_time[xNum] = mGraph.maxValue;
+								}
+								if (ex_d <= mGraph.maxValue) {
+									bike_ex_distance[xNum] = ex_d;
+								} else {
+									bike_ex_distance[xNum] = mGraph.maxValue;
+								}
+							}
+						}
+
+						if ((Treadmill_ex_calories[xNum] + bike_ex_calories[xNum]) <= mGraph.maxValue) {
+							bikeTreadmill_ex_calories[xNum] = Treadmill_ex_calories[xNum] + bike_ex_calories[xNum];
+						} else {
+							bikeTreadmill_ex_calories[xNum] = mGraph.maxValue;
+						}
+						if ((Treadmill_ex_heartplus[xNum] + bike_ex_heartplus[xNum]) <= mGraph.maxValue) {
+							bikeTreadmill_ex_heartplus[xNum] = Treadmill_ex_heartplus[xNum] + bike_ex_heartplus[xNum];
+						} else {
+							bikeTreadmill_ex_heartplus[xNum] = mGraph.maxValue;
+						}
+						if ((Treadmill_ex_time[xNum] + bike_ex_time[xNum]) <= mGraph.maxValue) {
+							bikeTreadmill_ex_time[xNum] = Treadmill_ex_time[xNum] + bike_ex_time[xNum];
+						} else {
+							bikeTreadmill_ex_time[xNum] = mGraph.maxValue;
+						}
+						if ((Treadmill_ex_distance[xNum] + bike_ex_distance[xNum]) <= mGraph.maxValue) {
+							bikeTreadmill_ex_distance[xNum] = Treadmill_ex_distance[xNum] + bike_ex_distance[xNum];
+						} else {
+							bikeTreadmill_ex_distance[xNum] = mGraph.maxValue;
+						}
+
+					}
+				}
+				
+				if(queryStop) {
+					break;
+				}
+			}
+
+			if (findViewById(R.id.common_include_view_health_info_graph).getVisibility() == View.GONE) {
+				findViewById(R.id.common_include_view_health_info_graph).setVisibility(View.VISIBLE);
+			}
+
+			// graph
+			mGraph.setLineGraph("CALORIES", ExStatusActivity.this, Treadmill_ex_calories, bike_ex_calories,
+					bikeTreadmill_ex_calories, (ViewGroup) findViewById(R.id.layoutLineGraphView_exCalories));
+			mGraph.setLineGraph("HEARTPULSE", ExStatusActivity.this, Treadmill_ex_heartplus, bike_ex_heartplus,
+					bikeTreadmill_ex_heartplus, (ViewGroup) findViewById(R.id.layoutLineGraphView_exHeartPulse));
+			mGraph.setLineGraph("TIME", ExStatusActivity.this, Treadmill_ex_time, bike_ex_time, bikeTreadmill_ex_time,
+					(ViewGroup) findViewById(R.id.layoutLineGraphView_exTime));
+			mGraph.setLineGraph("DISTANCE", ExStatusActivity.this, Treadmill_ex_distance, bike_ex_distance,
+					bikeTreadmill_ex_distance, (ViewGroup) findViewById(R.id.layoutLineGraphView_exDistance));
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			Log.e("Error", "error");
+		}
+
 	}
 
 	private class UiHandler extends Handler {
@@ -1052,6 +1254,7 @@ public class ExStatusActivity extends Activity {
 		public static final int MSG_GET_SUMMARY_HEALTH_MONTHLY = 7;
 		public static final int MSG_GET_SUMMARY_HEALTH_WEEKLY = 8;
 		public static final int MSG_GET_SUMMARY_HEALTH_DAILY = 9;
+		public static final int MSG_GET_SUMMARY_HEALTH_GRAPH = 10;
 
 		@Override
 		public void handleMessage(Message msg) {
@@ -1125,6 +1328,11 @@ public class ExStatusActivity extends Activity {
 			case MSG_GET_SUMMARY_HEALTH_DAILY:
 				getSummaryExerciseInfo("daily");
 				break;
+
+			case MSG_GET_SUMMARY_HEALTH_GRAPH:
+				getSummaryExerciseInfoGraph();
+				break;
+
 			}
 		}
 	}

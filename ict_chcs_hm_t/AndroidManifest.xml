@@ -21,7 +21,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.ict_chcs.hm_t.ExStatusActivity"
+            android:name="com.ict_chcs.hm_t.SignInActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden" >
             <intent-filter>
@@ -43,10 +43,10 @@
             android:name="com.ict_chcs.hm_t.ExInfoActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
-        <!-- <activity
+        <activity
             android:name="com.ict_chcs.hm_t.ExStatusActivity"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="stateHidden" /> -->
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.ict_chcs.hm_t.ServerTestActivity"
             android:launchMode="singleTask"

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
@@ -67,6 +68,15 @@ public class SignInActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
+				if (((EditText) findViewById(R.id.edt_si_id)).getText().toString().equalsIgnoreCase("")) {
+					Utility.msgbox(SignInActivity.this, "Please insert a user id.");
+					return;
+				}
+				if (((EditText) findViewById(R.id.edt_si_pw)).getText().toString().equalsIgnoreCase("")) {
+					Utility.msgbox(SignInActivity.this, "Please insert a password.");
+					return;
+				}
+
 				ArrayList<String> mArrayList;
 				StringBuilder mRetJson = new StringBuilder();
 
@@ -76,16 +86,22 @@ public class SignInActivity extends Activity {
 
 				if (Application.getHCSAPI().GetExUser(mArrayList, mRetJson) == true) {
 
-					// Login
-					Intent intent = new Intent(SignInActivity.this, ExStatusActivity.class);
-					intent.putExtra("UserID", ((EditText) findViewById(R.id.edt_si_id)).getText().toString());
-					intent.putExtra("Password", ((EditText) findViewById(R.id.edt_si_pw)).getText().toString());
-					startActivity(intent);
-
-				} else {
-					Utility.msgbox(SignInActivity.this, "Please Sign up !!");
+					Utility.msgbox(SignInActivity.this, "User logined. Please wait ...");
+					
+					new Handler() {
+						public void handleMessage(Message msg) {
+							// Login
+							Intent intent = new Intent(SignInActivity.this, ExStatusActivity.class);
+							intent.putExtra("UserID", ((EditText) findViewById(R.id.edt_si_id)).getText().toString());
+							intent.putExtra("Password", ((EditText) findViewById(R.id.edt_si_pw)).getText().toString());
+							startActivity(intent);
+						}
+					}.sendEmptyMessageDelayed(0, 1000);
+					
+					return;
 				}
 
+				Utility.msgbox(SignInActivity.this, "Network or Server disconnected !!");
 			}
 		});
 
