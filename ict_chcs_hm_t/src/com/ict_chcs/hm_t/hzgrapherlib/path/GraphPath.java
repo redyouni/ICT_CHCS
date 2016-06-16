@@ -1,9 +1,9 @@
 package com.ict_chcs.hm_t.hzgrapherlib.path;
 
+import com.ict_chcs.hm_t.hzgrapherlib.util.MatrixTranslator;
+
 import android.graphics.Path;
 import android.graphics.PointF;
-
-import com.ict_chcs.hm_t.hzgrapherlib.util.MatrixTranslator;
 
 public class GraphPath extends Path {
 	

@@ -1,11 +1,11 @@
 package com.ict_chcs.hm_t.hzgrapherlib.canvas;
 
+import com.ict_chcs.hm_t.hzgrapherlib.util.MatrixTranslator;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-
-import com.ict_chcs.hm_t.hzgrapherlib.util.MatrixTranslator;
 
 /**
  * GraphCanvasWrapper class for drawing on traslate matrix (x coordinate) 

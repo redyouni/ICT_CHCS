@@ -3,6 +3,7 @@ package com.ict_chcs.hm_t;
 import java.util.ArrayList;
 
 import com.ict_chcs.hm_t.Adapter.Utility;
+import com.ict_chcs.hm_t.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -101,7 +102,7 @@ public class SignInActivity extends Activity {
 					return;
 				}
 
-				Utility.msgbox(SignInActivity.this, "Network or Server disconnected !!");
+				Utility.msgbox(SignInActivity.this, "Please Sign up !!");
 			}
 		});
 

@@ -2,6 +2,15 @@ package com.ict_chcs.hm_t.hzgrapherlib.graphview;
 
 import java.util.Calendar;
 
+import com.ict_chcs.hm_t.hzgrapherlib.canvas.GraphCanvasWrapper;
+import com.ict_chcs.hm_t.hzgrapherlib.error.ErrorCode;
+import com.ict_chcs.hm_t.hzgrapherlib.error.ErrorDetector;
+import com.ict_chcs.hm_t.hzgrapherlib.util.EuclidLine;
+import com.ict_chcs.hm_t.hzgrapherlib.util.EuclidPoint;
+import com.ict_chcs.hm_t.hzgrapherlib.vo.GraphNameBox;
+import com.ict_chcs.hm_t.hzgrapherlib.vo.bubblegraph.BubbleGraph;
+import com.ict_chcs.hm_t.hzgrapherlib.vo.bubblegraph.BubbleGraphVO;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,15 +25,6 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
-
-import com.ict_chcs.hm_t.hzgrapherlib.canvas.GraphCanvasWrapper;
-import com.ict_chcs.hm_t.hzgrapherlib.error.ErrorCode;
-import com.ict_chcs.hm_t.hzgrapherlib.error.ErrorDetector;
-import com.ict_chcs.hm_t.hzgrapherlib.util.EuclidLine;
-import com.ict_chcs.hm_t.hzgrapherlib.util.EuclidPoint;
-import com.ict_chcs.hm_t.hzgrapherlib.vo.GraphNameBox;
-import com.ict_chcs.hm_t.hzgrapherlib.vo.bubblegraph.BubbleGraph;
-import com.ict_chcs.hm_t.hzgrapherlib.vo.bubblegraph.BubbleGraphVO;
 
 public class BubbleGraphView extends SurfaceView implements Callback
 {

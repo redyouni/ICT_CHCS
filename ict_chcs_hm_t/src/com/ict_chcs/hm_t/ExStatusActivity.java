@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import com.ict_chcs.hm_t.Adapter.CustomAniDrawable;
 import com.ict_chcs.hm_t.Adapter.Graph;
 import com.ict_chcs.hm_t.Adapter.Utility;
+import com.ict_chcs.hm_t.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

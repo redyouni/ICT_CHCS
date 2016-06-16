@@ -2,10 +2,10 @@ package com.ict_chcs.hm_t.hzgrapherlib.vo.circlegraph;
 
 import java.util.List;
 
-import android.graphics.Color;
-
 import com.ict_chcs.hm_t.hzgrapherlib.animation.GraphAnimation;
 import com.ict_chcs.hm_t.hzgrapherlib.vo.Graph;
+
+import android.graphics.Color;
 
 public class CircleGraphVO extends Graph{
 	

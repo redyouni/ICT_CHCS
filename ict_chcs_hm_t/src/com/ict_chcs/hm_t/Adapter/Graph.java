@@ -3,12 +3,12 @@ package com.ict_chcs.hm_t.Adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ict_chcs.hm_t.R;
 import com.ict_chcs.hm_t.hzgrapherlib.animation.GraphAnimation;
 import com.ict_chcs.hm_t.hzgrapherlib.graphview.LineGraphView;
 import com.ict_chcs.hm_t.hzgrapherlib.vo.GraphNameBox;
 import com.ict_chcs.hm_t.hzgrapherlib.vo.linegraph.LineGraph;
 import com.ict_chcs.hm_t.hzgrapherlib.vo.linegraph.LineGraphVO;
+import com.ict_chcs.hm_t.R;
 import com.ict_chcs.hm_t.R;
 
 import android.annotation.SuppressLint;

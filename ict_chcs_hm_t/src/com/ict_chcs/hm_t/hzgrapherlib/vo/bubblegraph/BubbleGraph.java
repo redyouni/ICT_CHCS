@@ -1,8 +1,8 @@
 package com.ict_chcs.hm_t.hzgrapherlib.vo.bubblegraph;
 
-import android.graphics.Color;
-
 import com.ict_chcs.hm_t.hzgrapherlib.util.EuclidPoint;
+
+import android.graphics.Color;
 
 public class BubbleGraph 
 {

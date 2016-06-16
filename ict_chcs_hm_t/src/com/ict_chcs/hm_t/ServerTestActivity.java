@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.Random;
 
 import com.ict_chcs.hm_t.Adapter.Utility;
-
 import com.ict_chcs.hm_t.R;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Build;

@@ -6,12 +6,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.logo.R;
-import com.ict_chcs.hm.Adapter.Utility;
 import com.ict_chcs.hm.logo.Application.MyGlobals;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -74,7 +76,7 @@ public class CycleActivity extends Activity {
 			 	}
 		}
 			
-		  // ¸ÞÀÎ ¸Þ´º·Î µ¹¾Æ°¡±â
+		  // ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½
 		  imgCy_back.setOnClickListener(new OnClickListener() {
 		   @Override
 		   public void onClick(View v) {
@@ -82,10 +84,11 @@ public class CycleActivity extends Activity {
 			// TODO Auto-generated method stub
 			   Intent intentSub = new Intent(CycleActivity.this,MenuActivity.class);
 		       startActivity(intentSub);
+		       finish();
 		   }
 		  });
 		  
-		  // ½ÎÀÌÅ¬ ¿îµ¿ Á¤º¸
+		  // ï¿½ï¿½ï¿½ï¿½Å¬ ï¿½îµ¿ ï¿½ï¿½ï¿½ï¿½
 		  imgCy_result.setOnClickListener(new OnClickListener() {
 		   @Override
 		   public void onClick(View v) {
@@ -93,7 +96,38 @@ public class CycleActivity extends Activity {
 		    final Intent intentSub;
 		              intentSub = new Intent(CycleActivity.this,ResultCycleActivity.class);
 		              startActivity(intentSub); 
+		              finish();
 		   }
 		  });
 	}//onCreate
-}
+	
+	 public boolean onKeyDown(int keyCode,KeyEvent event)
+	   {
+	     if(keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0)
+	     {
+	      AlertDialog dialog;
+	      dialog = new AlertDialog.Builder(this).setMessage("ì¢…ë£Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")
+	          .setPositiveButton("ì˜ˆ", new DialogInterface.OnClickListener() {   
+	             public void onClick(DialogInterface dialog, int which) {
+	              // TODO Auto-generated method stub
+	            	 moveTaskToBack(true); 
+
+	           	  finish(); 
+
+	           	  android.os.Process.killProcess(android.os.Process.myPid());
+	             }
+	            })
+	             .setNegativeButton("ì•„ë‹ˆì˜¤", new DialogInterface.OnClickListener() {
+	           
+	           public void onClick(DialogInterface dialog, int which) {
+	            // TODO Auto-generated method stub
+	            dialog.cancel();
+	           }
+	          }) 
+	          .show();    
+	      return true;
+	     }
+	     return super.onKeyDown(keyCode, event);
+	   }
+	   
+	  }

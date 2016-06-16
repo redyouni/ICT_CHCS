@@ -42,7 +42,8 @@ public class ChangeActivity extends Activity {
 		rdbWoman = (RadioButton)findViewById(R.id.rdbChWoman);
 		rdgGender = (RadioGroup)findViewById(R.id.rdgChGender);
 		btnOK = (Button)findViewById(R.id.btnChOK);
-		
+		edtName.setPrivateImeOptions("defaultInputmode=english;");
+		edtName.requestFocus();
 		final ArrayList<String> mArrayList;
 		final StringBuilder mRetJson = new StringBuilder ();
 		mArrayList = new ArrayList<String>();
@@ -101,14 +102,14 @@ public class ChangeActivity extends Activity {
 					mArrayList.add(edtRFID.getText().toString());
 					
 					Application.getHCSAPI().SetExUser(mArrayList, mRetJson);
-					Utility.msgbox(getApplicationContext(), "Á¤º¸ ¼öÁ¤ ¿Ï·á");
-					Intent intent = new Intent(ChangeActivity.this, MenuActivity.class);
+					Utility.msgbox(getApplicationContext(), "ì •ë³´ìˆ˜ì • ì™„ë£Œ");
+					Intent intent = new Intent(ChangeActivity.this, LoginActivity.class);
 					startActivity(intent);
 					
 				} catch (Exception e) {
 					// TODO: handle exception
 					e.printStackTrace();
-					Utility.msgbox(getApplicationContext(), "Á¤º¸ ¼öÁ¤ ½ÇÆÐ");
+					Utility.msgbox(getApplicationContext(), "ì •ë³´ìˆ˜ì • ì‹¤íŒ¨");
 				}
 				
 			}

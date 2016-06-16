@@ -4,10 +4,13 @@ import com.example.logo.R;
 import com.ict_chcs.hm.Adapter.Utility;
 import com.ict_chcs.hm.logo.Application.MyGlobals;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -38,8 +41,8 @@ public class LoginActivity extends Activity {
 		view = (ImageView) findViewById(R.id.imageAnimation);
 		view.setBackgroundResource(R.drawable.frame_animation_list);
 		frameAnimation = (AnimationDrawable) view.getBackground();
-		
-		// ÀÚµ¿ ·Î±×ÀÎ ™EÁ¤
+		edtId.setPrivateImeOptions("defaultInputmode=english;");
+		// ï¿½Úµï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Eï¿½ï¿½
 				Auto_LogIn = (CheckBox) findViewById(R.id.chbAutoLogin);
 				setting = getSharedPreferences("setting", 0);
 				editor= setting.edit();
@@ -73,11 +76,11 @@ public class LoginActivity extends Activity {
 					
 					MyGlobals.getInstance().setmMyUSERID(edtId.getText().toString());
 					MyGlobals.getInstance().setmMyUSERPW(edtPassword.getText().toString());	
-					Utility.msgbox(getApplicationContext(), "·Î±×ÀÎ ¿Ï·á");
+					Utility.msgbox(getApplicationContext(), "ë¡œê·¸ì¸ ì™„ë£Œ");
 					Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
 					startActivity(intent);
 				} else {
-					Utility.msgbox(LoginActivity.this, "¾ÆÀÌµğ È¤Àº ºñ¹Ğ¹øÈ£°¡ ¸ÂÁö¾Ê½À´Ï´Ù !!");
+					Utility.msgbox(LoginActivity.this, "ì•„ì´ë”” í˜¹ì€ ë¹„ë°€ë²ˆí˜¸ê°€ ë§ì§€ ì•ŠìŠµë‹ˆë‹¤ !!");
 				}
 			}
 		});
@@ -90,7 +93,7 @@ public class LoginActivity extends Activity {
 			}
 		});
 		
-		// ÀÚµ¿ ·Î±×ÀÎ ¼³Á¤
+		// ï¿½Úµï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			 Auto_LogIn.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 		         @Override
 		         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -111,7 +114,7 @@ public class LoginActivity extends Activity {
 	      });
 			 
 	}//onCreate
-	 // µÚ·Î°¡±â Á¾·á
+	 // ï¿½Ú·Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 @Override 
 	      public void onBackPressed() {
 	      long tempTime        = System.currentTimeMillis();
@@ -122,10 +125,43 @@ public class LoginActivity extends Activity {
 	          } 
 	          else { 
 	              backPressedTime = tempTime; 
-	              Toast.makeText(getApplicationContext(),"'µÚ·Î'¹öÆ°À»ÇÑ¹ø´õ´©¸£½Ã¸éÁ¾·áµË´Ï´Ù.",Toast.LENGTH_SHORT).show(); 
+	              Toast.makeText(getApplicationContext(),"'ë’¤ë¡œ'ë²„íŠ¼ì„ í•œë²ˆë” ëˆ„ë¥´ì‹œë©´ ì¢…ë£Œë©ë‹ˆë‹¤.",Toast.LENGTH_SHORT).show(); 
 	          } 
 	      }//onBackPressed
 	 
+	 @Override
+	    public boolean onKeyDown(int keyCode,KeyEvent event)
+	    {
+	      if(keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0)
+	      {
+	       AlertDialog dialog;
+	       dialog = new AlertDialog.Builder(this).setMessage("ì¢…ë£Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")
+	           .setPositiveButton("ì˜ˆ", new DialogInterface.OnClickListener() {   
+	              public void onClick(DialogInterface dialog, int which) {
+	               // TODO Auto-generated method stub
+	            	  moveTaskToBack(true); 
+
+	            	  finish(); 
+
+	            	  android.os.Process.killProcess(android.os.Process.myPid());
+	              }
+	             })
+	              .setNegativeButton("ì•„ë‹ˆì˜¤", new DialogInterface.OnClickListener() {
+	            
+	            public void onClick(DialogInterface dialog, int which) {
+	             // TODO Auto-generated method stub
+	             dialog.cancel();
+	            }
+	           }) 
+	           .show();    
+	       return true;
+	      }
+	      return super.onKeyDown(keyCode, event);
+	    }
+	    
+	//onBackPressed
+		 
+		 
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		super.onWindowFocusChanged(hasFocus);

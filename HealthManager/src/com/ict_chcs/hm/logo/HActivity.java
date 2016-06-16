@@ -34,42 +34,46 @@ public class HActivity extends Activity {
 		edtAge = (EditText)findViewById(R.id.editOld);
 		edtWeight = (EditText)findViewById(R.id.editWeight);
 		rdbMan = (RadioButton)findViewById(R.id.rdbHMan);
-		rdbWoman = (RadioButton)findViewById(R.id.rdbHMan);
+		rdbWoman = (RadioButton)findViewById(R.id.rdbHWoman);
 		rdgGender = (RadioGroup)findViewById(R.id.rdgHGender);
 		btnOk =(Button)findViewById(R.id.h_button1);
 		btnIDCheck = (Button)findViewById(R.id.btnHCheck);
-		
+		edtName.requestFocus();
+		edtName.setPrivateImeOptions("defaultInputmode=english;");
+		edtID.setPrivateImeOptions("defaultInputmode=english;");
 		final ArrayList<String> mArrayList;
 		final StringBuilder mRetJson = new StringBuilder ();
 
 		mArrayList = new ArrayList<String>();
 		
 		rdbMan.setChecked(true);
-		
+		Gender="MALE";
 		rdgGender.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				// TODO Auto-generated method stub
+				
 				if(checkedId == R.id.rdbHMan) Gender = "MALE";
 				else	Gender = "FEMALE";
 			}
 		});
 		
-		/*
-		// Áßº¹ ¾ÆÀÌµğ °Ë»ç get_ex_user.php ¼öÁ¤ ÇÊ¿äÇÔ
+		
+		// ï¿½ßºï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ë»ï¿½
 		btnIDCheck.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				mArrayList.clear();
 				mArrayList.add(edtID.getText().toString());
 				if(!edtID.getText().toString().equals("") && Application.getHCSAPI().GetExUser(mArrayList, mRetJson) == false) {
-					Utility.msgbox(getApplicationContext(), "¾ÆÀÌµğ »ç¿ëÀÌ °¡´ÉÇÕ´Ï´Ù");
-				}else	Utility.msgbox(getApplicationContext(), "¾ÆÀÌµğ¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä");
+					Utility.msgbox(getApplicationContext(), "ì•„ì´ë”” ì‚¬ìš© ê°€ëŠ¥ í•©ë‹ˆë‹¤");
+				}else	Utility.msgbox(getApplicationContext(), "ì•„ì´ë””ë¥¼ í™•ì¸í•´ì£¼ì„¸ìš”");
 				
 			}
 		});
-		*/
+		
 		btnOk.setOnClickListener(new View.OnClickListener() {
 	         @Override
 	         public void onClick(View v) {
@@ -91,11 +95,11 @@ public class HActivity extends Activity {
 						
 						Application.getHCSAPI().SetExUser(mArrayList, mRetJson);
 						Utility.msgbox(HActivity.this, "Sign Up Successed !!");
-						Intent intentSub = new Intent(HActivity.this, MenuActivity.class);
+						Intent intentSub = new Intent(HActivity.this, LoginActivity.class);
 			            startActivity(intentSub);
 
 					} else {
-						Utility.msgbox(HActivity.this, "ÀÌ¹Ì µî·ÏµÈ È¸¿øÀÌ°Å³ª È¸¿ø ¾ç½ÄÀ» ´Ù Ã¤¿öÁÖ¼¼¿ä.");
+						Utility.msgbox(HActivity.this, "ì´ë¯¸ ë“±ë¡ëœ íšŒì›ì´ê±°ë‚˜ íšŒì›ì–‘ì‹ì„ ë‹¤ ì±„ì›Œì£¼ì„¸ìš”.");
 					}
 
 	             

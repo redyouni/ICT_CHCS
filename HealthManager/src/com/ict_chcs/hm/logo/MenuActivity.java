@@ -35,6 +35,7 @@ public class MenuActivity extends Activity {
 	   HCSAPI.GetExResult(mArrayList, mRetJson);
 	   Intent intentSub = new Intent(MenuActivity.this, RunningActivity.class);
        startActivity(intentSub);
+       finish();
    }
   });
   imgCycle.setOnClickListener(new OnClickListener() {
@@ -44,7 +45,9 @@ public class MenuActivity extends Activity {
     // TODO Auto-generated method stub
     final Intent intentSub;
               intentSub = new Intent(MenuActivity.this, CycleActivity.class);
-              startActivity(intentSub);    
+              startActivity(intentSub);
+              finish();
+              
    }
   });
   

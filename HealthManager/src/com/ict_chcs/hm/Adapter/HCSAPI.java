@@ -96,7 +96,11 @@ public class HCSAPI {
 	public static Boolean GetExUser(ArrayList<String> ArrayList, StringBuilder retJson) {
 
 		String result = null;
-		REQUEST = SERVER_URL + GET_EX_USER + "?" + "id=" + ArrayList.get(0) + "&" + "password=" + ArrayList.get(1);
+		if(ArrayList.size() == 2) {
+			REQUEST = SERVER_URL + GET_EX_USER + "?" + "id=" + ArrayList.get(0) + "&" + "password=" + ArrayList.get(1);
+		}else
+			REQUEST = SERVER_URL + GET_EX_USER + "?" + "id=" + ArrayList.get(0);
+		
 
 		try {
 			result = new Query().execute(REQUEST).get();

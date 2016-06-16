@@ -70,7 +70,7 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/text_cyc_km"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="카드번호 :"
@@ -83,6 +83,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="number"
+            android:maxLength="16"
             android:singleLine="true" />
 
     </LinearLayout>
@@ -179,7 +180,7 @@
             android:singleLine="true" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView_cyc1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="몸무게 :"

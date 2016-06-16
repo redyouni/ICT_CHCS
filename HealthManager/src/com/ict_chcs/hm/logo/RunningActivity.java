@@ -10,8 +10,11 @@ import com.example.logo.R;
 import com.ict_chcs.hm.logo.Application.MyGlobals;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -40,9 +43,9 @@ public class RunningActivity extends Activity {
 		  StringBuilder mRetJson = new StringBuilder ();
 		  mArrayList = new ArrayList<String>();
   		  mArrayList.add(MyGlobals.getInstance().getmMyUSERID());
-		  mArrayList.add("TREADMIL");
+		  mArrayList.add("TREADMILL");
 		  
-		  if(Application.getHCSAPI().GetExResult(mArrayList, mRetJson)) {
+		  if(Application.getHCSAPI().GetExLatestResult(mArrayList, mRetJson) == true ) {
 				try {
 					JSONObject root = new JSONObject(mRetJson.toString());
 					JSONArray results = root.getJSONArray("results");
@@ -82,6 +85,7 @@ public class RunningActivity extends Activity {
 			// TODO Auto-generated method stub
 			   Intent intentSub = new Intent(RunningActivity.this,MenuActivity.class);
 		       startActivity(intentSub);
+		       finish();
 		   }
 		  });
 		  
@@ -92,7 +96,38 @@ public class RunningActivity extends Activity {
 		    final Intent intentSub;
 		              intentSub = new Intent(RunningActivity.this,ResultRunActivity.class);
 		              startActivity(intentSub); 
+		              finish();
 		   }
 		  });
 	}//onCreate
-}
+    public boolean onKeyDown(int keyCode,KeyEvent event)
+    {
+      if(keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0)
+      {
+       AlertDialog dialog;
+       dialog = new AlertDialog.Builder(this).setMessage("종료하시겠습니까?")
+           .setPositiveButton("예", new DialogInterface.OnClickListener() {   
+              public void onClick(DialogInterface dialog, int which) {
+               // TODO Auto-generated method stub
+             	 moveTaskToBack(true); 
+
+            	  finish(); 
+
+            	  android.os.Process.killProcess(android.os.Process.myPid());
+              }
+             })
+              .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            
+            public void onClick(DialogInterface dialog, int which) {
+             // TODO Auto-generated method stub
+             dialog.cancel();
+            }
+           }) 
+           .show();    
+       return true;
+      }
+      return super.onKeyDown(keyCode, event);
+    }
+    
+   }
+

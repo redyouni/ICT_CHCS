@@ -349,14 +349,14 @@ public class Utility {
 	public static String getNowDateTime() {
 		Calendar calendar = Calendar.getInstance();
 		Date date = calendar.getTime();
-		return new SimpleDateFormat("yyyyMMddHHmmss").format(date);
+		return new SimpleDateFormat("yyyyMMdd").format(date);
 	}
 	
 	public static String get7DaysDateTime(int days) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.DATE, days);
 		Date date = calendar.getTime();
-		return new SimpleDateFormat("yyyyMMddHHmmss").format(date);
+		return new SimpleDateFormat("yyyyMMdd").format(date);
 	}
 	
 
